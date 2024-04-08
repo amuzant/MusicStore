@@ -26,7 +26,7 @@ public class DiscInterior
         System.out.println("Adaugare melodii: ");
         for(int i=1;i<=nrPiese;i++)
         {
-            System.out.println("Melodia "+nrPiese);
+            System.out.println("Melodia "+i);
             Melodie melodie=new Melodie(scanner);
             melodii.add(melodie);
         }

@@ -16,6 +16,7 @@ public class ProdusDao {
         if(!produse.isEmpty()){
             for(Produs p : produse){
                 if(p.getDenumire().equals(denumire)){
+                    System.out.println(p);
                     return p;
                 }
             }

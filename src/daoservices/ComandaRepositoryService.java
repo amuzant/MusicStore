@@ -18,6 +18,7 @@ public class ComandaRepositoryService {
 
     public void addComanda(Comanda comanda) {
         if(comanda!=null) {
+            System.out.println("Comanda creeata cu success");
             comandaDao.create(comanda);
         }
     }

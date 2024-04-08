@@ -16,6 +16,7 @@ public class UserDao {
         if(!users.isEmpty()){
             for(User u : users){
                 if(u.getEmail().equalsIgnoreCase(email)){
+                    System.out.println(u);
                     return u;
                 }
             }
@@ -26,6 +27,7 @@ public class UserDao {
         if(!users.isEmpty()){
             for(User u : users){
                 if(u.getNrTelefon().equalsIgnoreCase(phone)){
+                    System.out.println(u);
                     return u;
                 }
             }

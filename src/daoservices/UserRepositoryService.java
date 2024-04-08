@@ -31,14 +31,24 @@ public class UserRepositoryService {
     {
         System.out.println("Email: ");
         String email=scanner.nextLine();
-        userDao.delete(userDao.readByEmail(email));
+        User user=userDao.readByEmail(email);
+        if(user!=null) {
+            System.out.println("User sters cu success.");
+            userDao.delete(user);
+        }
+        else System.out.println("Userul nu exista.");
     }
 
     public void removeUserByPhone(Scanner scanner)
     {
         System.out.println("Phone: ");
         String phone=scanner.nextLine();
-        userDao.delete(userDao.readByEmail(phone));
+        User user=userDao.readByEmail(phone);
+        if(user!=null) {
+            System.out.println("User sters cu success.");
+            userDao.delete(user);
+        }
+        else System.out.println("Userul nu exista.");
     }
 
     public User getUserByEmail(Scanner scanner) {

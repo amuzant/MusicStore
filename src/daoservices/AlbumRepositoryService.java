@@ -14,6 +14,7 @@ public class AlbumRepositoryService {
     public void addAlbum(Album album) {
         if(album!=null) {
             if(!alreadyExists(album))
+                System.out.println("Albumul a fost adaugat cu success!");
                 albumDao.create(album);
         }
     }
@@ -29,7 +30,10 @@ public class AlbumRepositoryService {
     }
 
     public void delete(Album album) {
-        if(alreadyExists(album)) albumDao.delete(album);
+        if(alreadyExists(album)) {
+            System.out.println("Album deleted successfully.");
+            albumDao.delete(album);
+        }
         else System.out.println("Album does not exist.");
     }
 

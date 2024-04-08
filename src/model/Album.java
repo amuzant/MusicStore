@@ -8,7 +8,6 @@ public class Album {
     private String numeArtist;
     private String numeAlbum;
     private String genMuzical;
-    private int nrPieseTotale;
 
     public Album(String numeArtist, String numeAlbum) {
         this.numeArtist = numeArtist;
@@ -50,8 +49,7 @@ public class Album {
         return "Album{" +
                 "numeArtist='" + numeArtist + '\'' +
                 ", numeAlbum='" + numeAlbum + '\'' +
-                ", genMuzical='" + genMuzical + '\'' +
-                ", nrPieseTotale=" + nrPieseTotale +
+                ", genMuzical='" + genMuzical +
                 '}';
     }
 }

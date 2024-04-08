@@ -18,6 +18,7 @@ public class InchiriereRepositoryService {
 
     public void addInchiriere(Inchiriere inchiriere) {
         if(inchiriere!=null) {
+            System.out.println("Inchiriere creeata cu success.");
             inchiriereDao.create(inchiriere);
         }
     }

@@ -16,6 +16,7 @@ public class AlbumDao {
         if(!albums.isEmpty()){
             for(Album a : albums){
                 if(a.getNumeArtist().equalsIgnoreCase(album.getNumeArtist()) && a.getNumeAlbum().equalsIgnoreCase(album.getNumeAlbum())){
+                    System.out.println(a);
                     return a;
                 }
             }

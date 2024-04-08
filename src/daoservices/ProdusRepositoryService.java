@@ -19,6 +19,7 @@ public class ProdusRepositoryService {
     public void addProdus(Produs produs) {
         if(produs!=null) {
             if(!alreadyExists(produs))
+                System.out.println("Produs creeat cu success.");
                 produsDao.create(produs);
         }
     }

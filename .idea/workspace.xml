@@ -6,10 +6,17 @@
   <component name="ChangeListManager">
     <list default="true" id="a8750e7f-fe5c-4d2c-b029-70d0625ed13c" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dao/AlbumDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/AlbumDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dao/ProdusDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/ProdusDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dao/UserDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/UserDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/daoservices/AlbumRepositoryService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/daoservices/AlbumRepositoryService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/daoservices/ComandaRepositoryService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/daoservices/ComandaRepositoryService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/daoservices/InchiriereRepositoryService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/daoservices/InchiriereRepositoryService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/daoservices/ProdusRepositoryService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/daoservices/ProdusRepositoryService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/daoservices/UserRepositoryService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/daoservices/UserRepositoryService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/DiscAlbum.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/DiscAlbum.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/Produs.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Produs.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/Album.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Album.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/DiscInterior.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/DiscInterior.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/service/InchiriereService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/InchiriereService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/service/ProdusService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/ProdusService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -26,6 +33,9 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
   </component>
   <component name="ProblemsViewState">
     <option name="selectedTabId" value="CurrentFile" />
@@ -75,7 +85,7 @@
       <workItem from="1711876203849" duration="2226000" />
       <workItem from="1712050872126" duration="5910000" />
       <workItem from="1712421050578" duration="14192000" />
-      <workItem from="1712592475248" duration="25120000" />
+      <workItem from="1712592475248" duration="27590000" />
     </task>
     <servers />
   </component>

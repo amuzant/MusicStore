@@ -91,7 +91,7 @@ public class InchiriereService {
     }
 
     private void readByPhone(Scanner scanner) {
-        inchiriereRepositoryService.readByEmail(findUser(scanner));
+        inchiriereRepositoryService.readByPhone(findUser(scanner));
     }
 
     private void readAll() {

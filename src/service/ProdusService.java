@@ -80,8 +80,12 @@ public class ProdusService {
 
     private Produs initByTip(Scanner scanner, String tip, Produs produs) {
         if(tip.equalsIgnoreCase(DISC))
-            return discInit(scanner,produs,tip);
+            return discInit(scanner,produs,null);
         else if(tip.equalsIgnoreCase(CHITARA))
+            return chitaraInit(scanner,produs,null);
+        else if(tip.equalsIgnoreCase(CD)||tip.equalsIgnoreCase(VINYL))
+            return discInit(scanner,produs,tip);
+        else if(tip.equalsIgnoreCase(ELECTRICA)||tip.equalsIgnoreCase(ACUSTICA))
             return chitaraInit(scanner,produs,tip);
         System.out.println("Tip invalid");
         return null;
