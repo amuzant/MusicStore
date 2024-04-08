@@ -55,4 +55,16 @@ public class Produs {
         this.rating = (this.rating*nrReviewuri+rating)/(nrReviewuri+1);
         nrReviewuri+=1;
     }
+
+    @Override
+    public String toString() {
+        return "Produs{" +
+                "denumire='" + denumire + '\'' +
+                ", pret=" + pret +
+                ", conditie='" + conditie + '\'' +
+                ", stoc=" + stoc +
+                ", rating=" + rating +
+                ", nrReviewuri=" + nrReviewuri +
+                '}';
+    }
 }

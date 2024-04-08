@@ -69,4 +69,16 @@ public class User {
     public void setCard(DebitCard card) {
         this.card = card;
     }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "nume='" + nume + '\'' +
+                ", email='" + email + '\'' +
+                ", nrTelefon='" + nrTelefon + '\'' +
+                ", adresa='" + adresa + '\'' +
+                ", dataAlaturarii=" + dataAlaturarii +
+                ", card=" + card +
+                '}';
+    }
 }

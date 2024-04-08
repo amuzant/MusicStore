@@ -29,17 +29,20 @@ public class UserRepositoryService {
 
     public void removeUserByEmail(Scanner scanner)
     {
+        System.out.println("Email: ");
         String email=scanner.nextLine();
         userDao.delete(userDao.readByEmail(email));
     }
 
     public void removeUserByPhone(Scanner scanner)
     {
+        System.out.println("Phone: ");
         String phone=scanner.nextLine();
         userDao.delete(userDao.readByEmail(phone));
     }
 
     public User getUserByEmail(Scanner scanner) {
+        System.out.println("Email: ");
         String email=scanner.nextLine();
         User searchedUser=userDao.readByEmail(email);
 
@@ -50,6 +53,7 @@ public class UserRepositoryService {
     }
 
     public User getUserByPhone(Scanner scanner) {
+        System.out.println("Phone: ");
         String phone=scanner.nextLine();
         User searchedUser=userDao.readByPhone(phone);
 

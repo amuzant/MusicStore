@@ -12,8 +12,10 @@ import static utils.Constante.*;
 
 public class ProdusService {
     private static ProdusRepositoryService produsRepositoryService;
+    private static AlbumRepositoryService albumRepositoryService;
     public ProdusService(){
-        this.produsRepositoryService = new ProdusRepositoryService();
+        produsRepositoryService = new ProdusRepositoryService();
+        albumRepositoryService=new AlbumRepositoryService();
     }
     public void preiaInput(Scanner scanner)
     {
@@ -47,8 +49,11 @@ public class ProdusService {
         String tip=scanner.nextLine();
         if(tipProdus!=null) tip=tipProdus;
         if(isValidType(tip)||isValidDerivedType(tip)) {
-            System.out.println("Denumire produs: ");
-            String denumire=scanner.nextLine();
+            String denumire=null;
+            if(!tip.equalsIgnoreCase(CD) && !tip.equalsIgnoreCase(VINYL) && !tip.equalsIgnoreCase(DISC)) {
+                System.out.println("Denumire produs: ");
+                denumire = scanner.nextLine();
+            }
             System.out.println("Pret produs: ");
             float pret=scanner.nextFloat();
             scanner.nextLine();
@@ -83,6 +88,12 @@ public class ProdusService {
     }
 
     private Produs discInit(Scanner scanner, Produs produs,String tipDisc) {
+        Album album=null;
+            System.out.println("Nume artist: ");
+            String numeArtist=scanner.nextLine();
+            System.out.println("Nume Album: ");
+            String numeAlbum=scanner.nextLine();
+            album=albumRepositoryService.read(new Album(numeArtist,numeAlbum));
         System.out.println("Tip Disc:");
         String tip=scanner.nextLine();
         if(tipDisc!=null) tip=tipDisc;
@@ -95,7 +106,7 @@ public class ProdusService {
             System.out.println("Pret inchiriere pe zi:");
             float pret = scanner.nextFloat();
             scanner.nextLine();
-            List<DiscInterior> listaDiscuri=new ArrayList<DiscInterior>();
+            List<DiscInterior> listaDiscuri= new ArrayList<>();
             System.out.println("Cate discuri contine produsul? (CD/Vinyl-uri interioare):");
             int nrDiscuri = scanner.nextInt();
             scanner.nextLine();
@@ -106,8 +117,13 @@ public class ProdusService {
                 listaDiscuri.add(discInterior);
             }
             Collections.sort(listaDiscuri, Comparator.comparingInt(DiscInterior::getNrDisc));
-            Produs album = new DiscAlbum(produs.getDenumire(), produs.getPret(), produs.getConditie(), produs.getStoc(), tip, anLansare, casaDiscuri, nrDiscuri, pret);
-            return album;
+            Produs disc;
+            if(album!=null)
+            {
+                disc=new DiscAlbum(album,produs.getPret(),produs.getConditie(),produs.getStoc(),tipDisc,anLansare,casaDiscuri,nrDiscuri,pret);
+            }
+            else disc = new DiscAlbum(numeArtist+" - "+numeAlbum, produs.getPret(), produs.getConditie(), produs.getStoc(), tip, anLansare, casaDiscuri, nrDiscuri, pret,listaDiscuri);
+            return disc;
         }
         System.out.println("Tip invalid.");
         return null;

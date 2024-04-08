@@ -31,6 +31,17 @@ public class DiscAlbum extends Produs {
         this.pretInchirierePeZi=pretInchirierePeZi;
     }
 
+    public DiscAlbum(String denumire, float pret, String conditie, int stoc, String tipDisc, int anLansare, String numeCasaDeDiscuri, int nrDiscuri, float pretInchirierePeZi,List<DiscInterior> discuriInterioare) {
+        super(denumire, pret, conditie, stoc);
+        this.album=null;
+        this.tipDisc=tipDisc;
+        this.anLansare=anLansare;
+        this.nrDiscuri=nrDiscuri;
+        this.numeCasaDeDiscuri=numeCasaDeDiscuri;
+        this.pretInchirierePeZi=pretInchirierePeZi;
+        this.discuriInterioare=discuriInterioare;
+    }
+
     public DiscAlbum(String denumire, float pret, String conditie, int stoc) {
         super(denumire,pret,conditie,stoc);
     }
