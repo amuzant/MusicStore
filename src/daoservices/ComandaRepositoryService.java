@@ -1,13 +1,9 @@
 package daoservices;
 
-import dao.AlbumDao;
 import dao.ComandaDao;
 import model.Comanda;
-import model.Inchiriere;
+import model.Produs;
 import model.User;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class ComandaRepositoryService {
     private ComandaDao comandaDao;
@@ -27,11 +23,17 @@ public class ComandaRepositoryService {
         comandaDao.readAll();
     }
 
-    public void readByEmail(User userByEmail) {
+    public User readByEmail(User userByEmail) {
         comandaDao.readByEmail(userByEmail);
+        return userByEmail;
     }
 
-    public void readByPhone(User userByPhone) {
+    public User readByPhone(User userByPhone) {
         comandaDao.readByPhone(userByPhone);
+        return userByPhone;
+    }
+
+    public Comanda read(User user, Produs produs) {
+        return comandaDao.read(user,produs);
     }
 }

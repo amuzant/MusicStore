@@ -51,6 +51,24 @@ public class UserRepositoryService {
         else System.out.println("Userul nu exista.");
     }
 
+    public User findUser(Scanner scanner) {
+        System.out.println("Alege client: ");
+        System.out.println("Citesti dupa telefon (t) sau email? (e): ");
+        String tipCitire=scanner.nextLine();
+        if(tipCitire.equalsIgnoreCase("t"))
+        {
+            User user=getUserByPhone(scanner);
+            return user;
+        }
+        else if(tipCitire.equalsIgnoreCase("e"))
+        {
+            User user=getUserByEmail(scanner);
+            return user;
+        }
+        else System.out.println("Tip incorect.");
+        return null;
+    }
+
     public User getUserByEmail(Scanner scanner) {
         System.out.println("Email: ");
         String email=scanner.nextLine();

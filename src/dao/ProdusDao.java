@@ -21,7 +21,6 @@ public class ProdusDao {
                 }
             }
         }
-        else System.out.println("No products have been added.");
         return null;
     }
 

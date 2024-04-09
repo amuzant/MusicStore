@@ -92,6 +92,7 @@ public class UserService {
                 searchedUser.setAdresa(userNou.getAdresa());
                 searchedUser.setEmail(userNou.getEmail());
                 searchedUser.setNrTelefon(userNou.getNrTelefon());
+                searchedUser.setCard(userNou.getCard());
             }
         }
     }

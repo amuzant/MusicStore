@@ -24,7 +24,8 @@ public class ComandaService {
         System.out.println("Serviciu Comanda:");
         System.out.println("1. Creeaza Comanda\n" +
                 "2. Afiseaza toate comenzile\n" +
-                "3. Afiseaza comenzile unui utilizator");
+                "3. Afiseaza comenzile unui utilizator\n"+
+                "4. Adauga un review pentru un produs comandat");
         alegeOptiune(scanner);
     }
     private void alegeOptiune(Scanner scanner) {
@@ -34,8 +35,43 @@ public class ComandaService {
             case 1->addComanda(scanner);
             case 2->readAll();
             case 3->read(scanner);
-            default -> System.out.println("Optiunea aleasa nu exista | Inserati un numar de la 1 la 3");
+            case 4->review(scanner);
+            default -> System.out.println("Optiunea aleasa nu exista | Inserati un numar de la 1 la 4");
         }
+    }
+
+    private void review(Scanner scanner) {
+        System.out.println("Denumire produs: ");
+        String denumire=scanner.nextLine();
+        Produs produs=produsRepositoryService.getProdus(denumire);
+        if(produs!=null)
+        {
+            User user=null;
+            System.out.println("Citesti dupa telefon (t) sau email? (e): ");
+            String tipCitire=scanner.nextLine();
+            if(tipCitire.equalsIgnoreCase("t"))
+            {
+                user=readByPhone(scanner);
+            }
+            else if(tipCitire.equalsIgnoreCase("e"))
+            {
+                user=readByEmail(scanner);
+            }
+            if(user!=null)
+            {
+                if(findComanda(user,produs)!=null)
+                {
+                    System.out.println("Review-ul tau pentru produsul "+produs.getDenumire()+" (1-5 stele):");
+                    float review=scanner.nextFloat();
+                    scanner.nextLine();
+                    produs.addRating(review);
+                }
+            }
+        }
+    }
+
+    private Comanda findComanda(User user, Produs produs) {
+        return comandaRepositoryService.read(user,produs);
     }
 
     private void read(Scanner scanner) {
@@ -53,31 +89,22 @@ public class ComandaService {
 
     private void addComanda(Scanner scanner)
     {
-        User user=findUser(scanner);
+        User user=userRepositoryService.findUser(scanner);
         if(user!=null)
         {
             Comanda comanda=produseComandaInit(user,scanner);
-            if(comanda.getClient().getCard().getBalanta()>comanda.getPretTotal() && comanda.getClient().getCard().getLimita()>comanda.getPretTotal())
+            if(comanda.getClient().getCard().getBalanta()>=comanda.getPretTotal() && comanda.getClient().getCard().getLimita()>=comanda.getPretTotal()) {
+                for (Produs p : comanda.getProduseCumparate())
+                    if (p.getStoc() <= 0) {
+                        System.out.println("Produse insuficiente");
+                        break;
+                    }
+                for (Produs p: comanda.getProduseCumparate())
+                    p.setStoc(p.getStoc()-1);
                 comandaRepositoryService.addComanda(comanda);
+            }
             else System.out.println("Fonduri insuficiente.");
         }
-    }
-    private User findUser(Scanner scanner) {
-        System.out.println("Alege client: ");
-        System.out.println("Citesti dupa telefon (t) sau email? (e): ");
-        String tipCitire=scanner.nextLine();
-        if(tipCitire.equalsIgnoreCase("t"))
-        {
-            User user=userRepositoryService.getUserByPhone(scanner);
-            return user;
-        }
-        else if(tipCitire.equalsIgnoreCase("e"))
-        {
-            User user=userRepositoryService.getUserByEmail(scanner);
-            return user;
-        }
-        else System.out.println("Tip incorect.");
-        return null;
     }
 
     private Comanda produseComandaInit(User user, Scanner scanner) {
@@ -86,7 +113,7 @@ public class ComandaService {
         Set<Produs> lista= new HashSet<>();
         int nrProduse=0;
         float pretTotal=0;
-        if(!numeProdus.equalsIgnoreCase("nu"))
+        while(!numeProdus.equalsIgnoreCase("nu"))
         {
             Produs produs=produsRepositoryService.getProdus(numeProdus);
             if(produs!=null) lista.add(produs);
@@ -95,6 +122,8 @@ public class ComandaService {
                 nrProduse++;
                 pretTotal+=produs.getPret();
             }
+            System.out.println("Adaugare produs la comanda dupa nume (scrie 'nu' daca vrei sa te opresti):");
+            numeProdus=scanner.nextLine();
         }
         return new Comanda(user,lista,pretTotal);
     }
@@ -104,10 +133,10 @@ public class ComandaService {
         comandaRepositoryService.readAll();
     }
 
-    private void readByEmail(Scanner scanner) {
-        comandaRepositoryService.readByEmail(findUser(scanner));
+    private User readByEmail(Scanner scanner) {
+        return comandaRepositoryService.readByEmail(userRepositoryService.getUserByEmail(scanner));
     }
-    private void readByPhone(Scanner scanner) {
-        comandaRepositoryService.readByPhone(findUser(scanner));
+    private User readByPhone(Scanner scanner) {
+        return comandaRepositoryService.readByPhone(userRepositoryService.getUserByPhone(scanner));
     }
 }

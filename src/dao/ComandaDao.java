@@ -1,6 +1,7 @@
 package dao;
 
 import model.Comanda;
+import model.Produs;
 import model.User;
 
 import java.util.ArrayList;
@@ -43,5 +44,17 @@ public class ComandaDao {
                 System.out.println(c);
             }
         }
+    }
+
+    public Comanda read(User user, Produs produs) {
+        for(Comanda c : comenzi){
+            {
+                if(user.getEmail().equals(c.getClient().getEmail()))
+                    for(Produs p:c.getProduseCumparate())
+                        if(p.getDenumire().equals(produs.getDenumire()))
+                            return c;
+            }
+        }
+        return null;
     }
 }

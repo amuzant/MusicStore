@@ -38,27 +38,9 @@ public class InchiriereService {
 
     private void addInchiriere(Scanner scanner)
     {
-        User user=findUser(scanner);
+        User user=userRepositoryService.findUser(scanner);
         if(user!=null)
-        inchiriereRepositoryService.addInchiriere(produseComandaInit(user,scanner));
-    }
-
-    private User findUser(Scanner scanner) {
-        System.out.println("Alege client: ");
-        System.out.println("Citesti dupa telefon (t) sau email? (e): ");
-        String tipCitire=scanner.nextLine();
-        if(tipCitire.equalsIgnoreCase("t"))
-        {
-            User user=userRepositoryService.getUserByPhone(scanner);
-            return user;
-        }
-        else if(tipCitire.equalsIgnoreCase("e"))
-        {
-            User user=userRepositoryService.getUserByEmail(scanner);
-            return user;
-        }
-        else System.out.println("Tip incorect.");
-        return null;
+            inchiriereRepositoryService.addInchiriere(produseComandaInit(user,scanner));
     }
 
     private Inchiriere produseComandaInit(User user, Scanner scanner) {
@@ -71,7 +53,12 @@ public class InchiriereService {
             System.out.println("Zile inchiriate: ");
             int zile=scanner.nextInt();
             scanner.nextLine();
-            return new Inchiriere(user,disc,zile);
+            if(disc.getStoc()>0) {
+                disc.setStoc(disc.getStoc()-1);
+                return new Inchiriere(user, disc, zile);
+            }
+            else System.out.println("Discul nu este in stoc.");
+            return null;
         }
         System.out.println("Disc invalid sau inexistent.");
         return null;
@@ -80,22 +67,22 @@ public class InchiriereService {
     private void read(Scanner scanner) {
         System.out.println("Citesti dupa telefon (t) sau email? (e): ");
         String tipCitire=scanner.nextLine();
-        if(tipCitire=="t")
+        if(tipCitire.equalsIgnoreCase("t"))
         {
             readByPhone(scanner);
         }
-        else if(tipCitire=="e")
+        else if(tipCitire.equalsIgnoreCase("e"))
         {
             readByEmail(scanner);
         }
     }
 
     private void readByEmail(Scanner scanner) {
-        inchiriereRepositoryService.readByEmail(findUser(scanner));
+        inchiriereRepositoryService.readByEmail(userRepositoryService.getUserByEmail(scanner));
     }
 
     private void readByPhone(Scanner scanner) {
-        inchiriereRepositoryService.readByPhone(findUser(scanner));
+        inchiriereRepositoryService.readByPhone(userRepositoryService.getUserByPhone(scanner));
     }
 
     private void readAll() {

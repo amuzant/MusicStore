@@ -68,7 +68,9 @@ public class ProdusService {
                 produs=initByTip(scanner,tip,produs);
                 return produs;
             }
+            else System.out.println("Conditie invalida.");
         }
+        else System.out.println("Tip invalid.");
         return null;
     }
 
@@ -156,6 +158,7 @@ public class ProdusService {
             Produs chitaraAcustica=new ChitaraAcustica(produs.getDenumire(),produs.getPret(),produs.getConditie(),produs.getStoc(),culoare,forma);
             return chitaraAcustica;
         }
+        else System.out.println("Tip invalid chitara.");
         return null;
     }
 

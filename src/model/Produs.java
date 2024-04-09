@@ -47,11 +47,15 @@ public class Produs {
         this.stoc = stoc;
     }
 
+    public void setRating(float rating) {
+        this.rating = rating;
+    }
+
     public float getRating() {
         return rating;
     }
 
-    public void setRating(float rating) {
+    public void addRating(float rating) {
         this.rating = (this.rating*nrReviewuri+rating)/(nrReviewuri+1);
         nrReviewuri+=1;
     }
