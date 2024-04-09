@@ -24,6 +24,12 @@ public class Chitara extends Produs{
     public String toString() {
         return "Chitara{" +
                 "culoare='" + culoare + '\'' +
+                "denumire='" + getDenumire() + '\'' +
+                ", pret=" + getPret() +
+                ", conditie='" + getConditie() + '\'' +
+                ", stoc=" + getStoc() +
+                ", rating=" + getRating() +
+                ", nrReviewuri=" + getNrReviewuri() +
                 '}';
     }
 }

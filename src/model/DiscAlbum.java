@@ -80,6 +80,12 @@ public class DiscAlbum extends Produs {
                 ", nrDiscuri=" + nrDiscuri +
                 ", pretInchirierePeZi=" + pretInchirierePeZi +
                 ", discuriInterioare=" + discuriInterioare +
+                ", denumire='" + getDenumire() + '\'' +
+                ", pret=" + getPret() +
+                ", conditie='" + getConditie() + '\'' +
+                ", stoc=" + getStoc() +
+                ", rating=" + getRating() +
+                ", nrReviewuri=" + getNrReviewuri() +
                 '}';
     }
 }

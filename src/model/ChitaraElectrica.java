@@ -29,6 +29,13 @@ public class ChitaraElectrica extends Chitara{
     public String toString() {
         return "ChitaraElectrica{" +
                 "configuratie='" + configuratie + '\'' +
+                "culoare='" + getCuloare() + '\'' +
+                "denumire='" + getDenumire() + '\'' +
+                ", pret=" + getPret() +
+                ", conditie='" + getConditie() + '\'' +
+                ", stoc=" + getStoc() +
+                ", rating=" + getRating() +
+                ", nrReviewuri=" + getNrReviewuri() +
                 '}';
     }
 }

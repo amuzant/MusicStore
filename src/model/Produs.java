@@ -56,6 +56,14 @@ public class Produs {
         nrReviewuri+=1;
     }
 
+    public int getNrReviewuri() {
+        return nrReviewuri;
+    }
+
+    public void setNrReviewuri(int nrReviewuri) {
+        this.nrReviewuri = nrReviewuri;
+    }
+
     @Override
     public String toString() {
         return "Produs{" +

@@ -26,6 +26,13 @@ public class ChitaraAcustica extends Chitara{
     public String toString() {
         return "ChitaraAcustica{" +
                 "forma='" + forma + '\'' +
+                "culoare='" + getCuloare() + '\'' +
+                "denumire='" + getDenumire() + '\'' +
+                ", pret=" + getPret() +
+                ", conditie='" + getConditie() + '\'' +
+                ", stoc=" + getStoc() +
+                ", rating=" + getRating() +
+                ", nrReviewuri=" + getNrReviewuri() +
                 '}';
     }
 }
