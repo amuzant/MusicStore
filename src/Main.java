@@ -27,7 +27,8 @@ public class Main {
             case 3->produsService.preiaInput(scanner);
             case 4->inchiriereService.preiaInput(scanner);
             case 5->comandaService.preiaInput(scanner);
-            default -> System.out.println("Optiunea aleasa nu exista | Inserati un numar de la 1 la 5");
+            case 6->System.exit(0);
+            default -> System.out.println("Optiunea aleasa nu exista | Inserati un numar de la 1 la 6");
         }
     }
 
@@ -39,6 +40,7 @@ public class Main {
                 "2. Acceseaza serviciile de administrat Albume\n" +
                 "3. Acceseaza serviciile de administrat Produse\n" +
                 "4. Acceseaza serviciile de administrat Inchirieri\n" +
-                "5. Acceseaza serviciile de administrat Comenzi");
+                "5. Acceseaza serviciile de administrat Comenzi\n" +
+                "6. Exit");
     }
 }

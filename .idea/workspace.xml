@@ -6,18 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="a8750e7f-fe5c-4d2c-b029-70d0625ed13c" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dao/AlbumDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/AlbumDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dao/ProdusDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/ProdusDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dao/UserDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/UserDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/daoservices/AlbumRepositoryService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/daoservices/AlbumRepositoryService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/daoservices/ComandaRepositoryService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/daoservices/ComandaRepositoryService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/daoservices/InchiriereRepositoryService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/daoservices/InchiriereRepositoryService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/daoservices/ProdusRepositoryService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/daoservices/ProdusRepositoryService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/daoservices/UserRepositoryService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/daoservices/UserRepositoryService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/Album.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Album.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/DiscInterior.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/DiscInterior.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/service/ComandaService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/ComandaService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/service/InchiriereService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/InchiriereService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/service/ProdusService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/ProdusService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -85,7 +76,7 @@
       <workItem from="1711876203849" duration="2226000" />
       <workItem from="1712050872126" duration="5910000" />
       <workItem from="1712421050578" duration="14192000" />
-      <workItem from="1712592475248" duration="27590000" />
+      <workItem from="1712592475248" duration="28474000" />
     </task>
     <servers />
   </component>

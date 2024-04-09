@@ -53,10 +53,14 @@ public class ComandaService {
 
     private void addComanda(Scanner scanner)
     {
-        Comanda comanda=produseComandaInit(findUser(scanner),scanner);
-        if(comanda.getClient().getCard().getBalanta()>comanda.getPretTotal() && comanda.getClient().getCard().getLimita()>comanda.getPretTotal())
-            comandaRepositoryService.addComanda(comanda);
-        else System.out.println("Fonduri insuficiente.");
+        User user=findUser(scanner);
+        if(user!=null)
+        {
+            Comanda comanda=produseComandaInit(user,scanner);
+            if(comanda.getClient().getCard().getBalanta()>comanda.getPretTotal() && comanda.getClient().getCard().getLimita()>comanda.getPretTotal())
+                comandaRepositoryService.addComanda(comanda);
+            else System.out.println("Fonduri insuficiente.");
+        }
     }
     private User findUser(Scanner scanner) {
         System.out.println("Alege client: ");

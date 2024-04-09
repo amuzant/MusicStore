@@ -13,6 +13,8 @@ public class InchiriereService {
     private static ProdusRepositoryService produsRepositoryService;
     public InchiriereService(){
         this.inchiriereRepositoryService = new InchiriereRepositoryService();
+        this.userRepositoryService=new UserRepositoryService();
+        this.produsRepositoryService=new ProdusRepositoryService();
     }
     public void preiaInput(Scanner scanner)
     {
@@ -36,19 +38,21 @@ public class InchiriereService {
 
     private void addInchiriere(Scanner scanner)
     {
-        inchiriereRepositoryService.addInchiriere(produseComandaInit(findUser(scanner),scanner));
+        User user=findUser(scanner);
+        if(user!=null)
+        inchiriereRepositoryService.addInchiriere(produseComandaInit(user,scanner));
     }
 
     private User findUser(Scanner scanner) {
         System.out.println("Alege client: ");
         System.out.println("Citesti dupa telefon (t) sau email? (e): ");
         String tipCitire=scanner.nextLine();
-        if(tipCitire=="t")
+        if(tipCitire.equalsIgnoreCase("t"))
         {
             User user=userRepositoryService.getUserByPhone(scanner);
             return user;
         }
-        else if(tipCitire=="e")
+        else if(tipCitire.equalsIgnoreCase("e"))
         {
             User user=userRepositoryService.getUserByEmail(scanner);
             return user;
