@@ -12,6 +12,10 @@ public class Chitara extends Produs{
         this.culoare = culoare;
     }
 
+    public Chitara() {
+        super();
+    }
+
     public String getCuloare() {
         return culoare;
     }

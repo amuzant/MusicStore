@@ -1,6 +1,8 @@
 package model;
 
 public class Produs {
+    private static int produsIndex=0;
+    private int id;
     private String denumire;
     private float pret;
     private String conditie;
@@ -13,6 +15,11 @@ public class Produs {
         this.pret = pret;
         this.conditie = conditie;
         this.stoc = stoc;
+        this.id=++produsIndex;
+    }
+
+    public Produs() {
+        //this.id=++produsIndex;
     }
 
     public String getDenumire() {
@@ -68,6 +75,14 @@ public class Produs {
         this.nrReviewuri = nrReviewuri;
     }
 
+    public static int getProdusIndex() {
+        return produsIndex;
+    }
+
+    public int getId() {
+        return id;
+    }
+
     @Override
     public String toString() {
         return "Produs{" +
@@ -78,5 +93,9 @@ public class Produs {
                 ", rating=" + rating +
                 ", nrReviewuri=" + nrReviewuri +
                 '}';
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }

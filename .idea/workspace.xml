@@ -5,16 +5,51 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a8750e7f-fe5c-4d2c-b029-70d0625ed13c" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/dao/ChitaraAcusticaDao.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/dao/ChitaraDao.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/dao/ChitaraElectricaDao.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/dao/DaoInterface.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/dao/DebitCardDao.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/dao/DiscAlbumDao.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/dao/DiscInteriorDao.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/dao/MelodieDao.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/dao/ProdusComandatDao.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/daoservices/DatabaseConnection.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/model/ProdusComandat.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/sqlscripts/scripts.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/utils/FileManagement.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Music Store.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Music Store.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dao/AlbumDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/AlbumDao.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/dao/ComandaDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/ComandaDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dao/InchiriereDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/InchiriereDao.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/dao/ProdusDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/ProdusDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dao/UserDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/UserDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/daoservices/AlbumRepositoryService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/daoservices/AlbumRepositoryService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/daoservices/ComandaRepositoryService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/daoservices/ComandaRepositoryService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/daoservices/InchiriereRepositoryService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/daoservices/InchiriereRepositoryService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/daoservices/ProdusRepositoryService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/daoservices/ProdusRepositoryService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/daoservices/UserRepositoryService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/daoservices/UserRepositoryService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/Album.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Album.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/Chitara.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Chitara.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/ChitaraAcustica.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/ChitaraAcustica.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/ChitaraElectrica.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/ChitaraElectrica.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/Comanda.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Comanda.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/DebitCard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/DebitCard.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/DiscAlbum.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/DiscAlbum.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/DiscInterior.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/DiscInterior.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/Inchiriere.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Inchiriere.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/Melodie.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Melodie.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/model/Produs.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Produs.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/service/AlbumService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/AlbumService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/service/ComandaService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/ComandaService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/service/InchiriereService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/InchiriereService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/service/ProdusService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/ProdusService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils/Constante.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/Constante.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,6 +66,9 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="KubernetesApiProvider">{
+  &quot;isMigrated&quot;: true
+}</component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
@@ -46,24 +84,49 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/rei/Desktop/FMI/AN 2/Semestrul 2/PAO/242PAOuniv&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.Main.executor": "Run",
+    "Database Script.scripts.sql.executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "git-widget-placeholder": "master",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/rei/Desktop/FMI/AN 2/Semestrul 2/PAO/ExercitiiLabPAO",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.2",
+    "run.code.analysis.last.selected.profile": "pProject Default",
+    "vue.rearranger.settings.migration": "true"
+  },
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "mysql"
+    ],
+    "RunConfigurationTargetLRU": [
+      "5ae7e5d5-16f3-47f8-9747-fe3666944848"
+    ]
   }
-}</component>
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="dao" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="scripts.sql" type="DatabaseScript" editBeforeRun="true" nameIsGenerated="true">
+      <script-file value="$PROJECT_DIR$/src/sqlscripts/scripts.sql" />
+      <script-mode>FILE</script-mode>
+      <data-source id="5ae7e5d5-16f3-47f8-9747-fe3666944848" />
+      <method v="2" />
+    </configuration>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -82,7 +145,10 @@
       <workItem from="1711876203849" duration="2226000" />
       <workItem from="1712050872126" duration="5910000" />
       <workItem from="1712421050578" duration="14192000" />
-      <workItem from="1712592475248" duration="32502000" />
+      <workItem from="1712592475248" duration="33708000" />
+      <workItem from="1715093073952" duration="35905000" />
+      <workItem from="1715684124760" duration="1300000" />
+      <workItem from="1716024918368" duration="26775000" />
     </task>
     <servers />
   </component>

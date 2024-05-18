@@ -1,7 +1,6 @@
 package model;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.Scanner;
 
 public class DebitCard {
@@ -31,6 +30,10 @@ public class DebitCard {
         this.limita=scanner.nextFloat();
         scanner.nextLine();
         this.dataExpirare=LocalDate.now().plusYears(4);
+    }
+
+    public DebitCard() {
+        this.dataExpirare = LocalDate.now().plusYears(4);
     }
 
     public float getBalanta() {

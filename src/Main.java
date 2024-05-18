@@ -1,16 +1,25 @@
+import daoservices.DatabaseConnection;
 import service.*;
 
+import java.sql.*;
 import java.util.Scanner;
 
 public class Main {
-    static UserService userService=new UserService();
-    static ComandaService comandaService=new ComandaService();
-    static InchiriereService inchiriereService=new InchiriereService();
-    static ProdusService produsService=new ProdusService();
-    static AlbumService albumService=new AlbumService();
-    static Scanner scanner=new Scanner(System.in);
-    public static void main(String[] args) {
-
+    static UserService userService;
+    static ComandaService comandaService;
+    static InchiriereService inchiriereService;
+    static ProdusService produsService;
+    static AlbumService albumService;
+    static Scanner scanner;
+    static DatabaseConnection databaseConnection;
+    public static void main(String[] args) throws SQLException {
+        userService=new UserService();
+        comandaService=new ComandaService();
+        inchiriereService=new InchiriereService();
+        produsService=new ProdusService();
+        albumService=new AlbumService();
+        scanner=new Scanner(System.in);
+        databaseConnection=new DatabaseConnection();
         while(true)
         {
             meniu();
@@ -18,7 +27,7 @@ public class Main {
         }
     }
 
-    private static void citesteOptiune(Scanner scanner) {
+    private static void citesteOptiune(Scanner scanner) throws SQLException {
         int optiune = scanner.nextInt();
         scanner.nextLine();
         switch(optiune) {

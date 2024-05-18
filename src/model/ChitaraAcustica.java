@@ -9,6 +9,10 @@ public class ChitaraAcustica extends Chitara{
         this.forma=forma;
     }
 
+    public ChitaraAcustica() {
+        super();
+    }
+
     private void play()
     {
         System.out.println("Poti canta folk, country, bluegrass ♫ ♬");

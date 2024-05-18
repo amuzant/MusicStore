@@ -4,16 +4,18 @@ import daoservices.AlbumRepositoryService;
 import daoservices.ProdusRepositoryService;
 import model.*;
 
+import java.sql.SQLException;
 import java.util.*;
 
 import utils.Constante;
+import utils.FileManagement;
 
 import static utils.Constante.*;
 
 public class ProdusService {
     private static ProdusRepositoryService produsRepositoryService;
     private static AlbumRepositoryService albumRepositoryService;
-    public ProdusService(){
+    public ProdusService() throws SQLException {
         produsRepositoryService = new ProdusRepositoryService();
         albumRepositoryService=new AlbumRepositoryService();
     }
@@ -32,7 +34,7 @@ public class ProdusService {
         scanner.nextLine();
         switch(optiune) {
             case 1->addProdus(scanner);
-            case 2->read(scanner);
+            case 2->System.out.println(read(scanner));
             case 3->update(scanner);
             case 4->readAll(scanner);
             case 5->delete(scanner);
@@ -42,7 +44,35 @@ public class ProdusService {
 
     private void addProdus(Scanner scanner)
     {
-        produsRepositoryService.addProdus(create(scanner,null));
+        try {
+            Produs p;
+            produsRepositoryService.addProdus(p=create(scanner,null));
+            if(p!=null) {
+                FileManagement.scriereFisierChar(AUDIT_FILE, "add produs " + p.getId());
+                if (p instanceof DiscAlbum) {
+                    List<DiscInterior> listaDiscuri = new ArrayList<>();
+                    System.out.println("Cate discuri contine produsul? (CD/Vinyl-uri interioare):");
+                    int nrDiscuri = scanner.nextInt();
+                    scanner.nextLine();
+                    DiscInterior discInterior = new DiscInterior();
+                    for (int i = 1; i <= nrDiscuri; i++) {
+                        System.out.println("Disc nou");
+                        discInterior = new DiscInterior(scanner);
+                        listaDiscuri.add(discInterior);
+                        discInterior.setIdProdus(p.getId());
+                        produsRepositoryService.addDiscInterior(discInterior);
+                        FileManagement.scriereFisierChar(AUDIT_FILE, "add disc interior " + discInterior.getId());
+                    }
+                    if (discInterior.getMelodii() != null)
+                        for (Melodie melodie : discInterior.getMelodii()) {
+                            produsRepositoryService.addMelodie(melodie);
+                            FileManagement.scriereFisierChar(AUDIT_FILE, "add melodie " + melodie.getId());
+                        }
+                }
+            }
+        } catch (SQLException e) {
+            System.out.println("Produsul nu a putut fi adaugat! "+e.getMessage());
+        }
     }
     private Produs create(Scanner scanner,String tipProdus) {
         System.out.println("Tip produs: ");
@@ -112,23 +142,13 @@ public class ProdusService {
             System.out.println("Pret inchiriere pe zi:");
             float pret = scanner.nextFloat();
             scanner.nextLine();
-            List<DiscInterior> listaDiscuri= new ArrayList<>();
-            System.out.println("Cate discuri contine produsul? (CD/Vinyl-uri interioare):");
-            int nrDiscuri = scanner.nextInt();
-            scanner.nextLine();
-            for(int i=1;i<=nrDiscuri;i++)
-            {
-                System.out.println("Disc nou");
-                DiscInterior discInterior=new DiscInterior(scanner);
-                listaDiscuri.add(discInterior);
-            }
-            Collections.sort(listaDiscuri, Comparator.comparingInt(DiscInterior::getNrDisc));
+
             Produs disc;
             if(album!=null)
             {
-                disc=new DiscAlbum(album,produs.getPret(),produs.getConditie(),produs.getStoc(),tipDisc,anLansare,casaDiscuri,nrDiscuri,pret);
+                disc=new DiscAlbum(album,produs.getPret(),produs.getConditie(),produs.getStoc(),tipDisc,anLansare,casaDiscuri,pret);
             }
-            else disc = new DiscAlbum(numeArtist+" - "+numeAlbum, produs.getPret(), produs.getConditie(), produs.getStoc(), tip, anLansare, casaDiscuri, nrDiscuri, pret,listaDiscuri);
+            else disc = new DiscAlbum(numeArtist+" - "+numeAlbum, produs.getPret(), produs.getConditie(), produs.getStoc(), tip, anLansare, casaDiscuri, pret);
             return disc;
         }
         System.out.println("Tip invalid.");
@@ -200,19 +220,20 @@ public class ProdusService {
             case Produs p->produsNou=create(scanner,null);
             case null->throw new IllegalStateException("Illegal product type.");
         }
+            produsRepositoryService.update(produsNou);
     }
 
     private void readAll(Scanner scanner) {
         System.out.println("Vrei sa citesti un tip specific de produs (ChitaraElectrica / ChitaraAcustica / Disc )? Scrie nu daca nu vrei.");
         String tip=scanner.nextLine();
         if(tip.equalsIgnoreCase("nu"))
-            produsRepositoryService.readAll(null);
+            produsRepositoryService.readAll(new Produs());
         if(tip.equalsIgnoreCase("chitaraelectrica"))
-            produsRepositoryService.readAll(new ChitaraElectrica(null,0,null,0,null,null));
+            produsRepositoryService.readAll(new ChitaraElectrica());
         if(tip.equalsIgnoreCase("chitaraacustica"))
-            produsRepositoryService.readAll(new ChitaraAcustica(null,0,null,0,null,null));
+            produsRepositoryService.readAll(new ChitaraAcustica());
         if(tip.equalsIgnoreCase("disc"))
-            produsRepositoryService.readAll(new DiscAlbum(null,0,null,0));
+            produsRepositoryService.readAll(new DiscAlbum());
     }
 
     private void delete(Scanner scanner) {

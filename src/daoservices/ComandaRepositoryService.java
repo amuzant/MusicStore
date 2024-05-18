@@ -1,39 +1,80 @@
 package daoservices;
 
 import dao.ComandaDao;
+import dao.ProdusComandatDao;
+import dao.ProdusDao;
 import model.Comanda;
 import model.Produs;
+import model.ProdusComandat;
 import model.User;
+import utils.FileManagement;
+
+import java.sql.SQLException;
+
+import static utils.Constante.AUDIT_FILE;
 
 public class ComandaRepositoryService {
-    private ComandaDao comandaDao;
-
-    public ComandaRepositoryService() {
-        this.comandaDao=new ComandaDao();
-    }
+    private ComandaDao comandaDao=ComandaDao.getInstance();
+    private ProdusComandatDao produsComandatDao=ProdusComandatDao.getInstance();
+    public ComandaRepositoryService() throws SQLException {};
 
     public void addComanda(Comanda comanda) {
         if(comanda!=null) {
-            System.out.println("Comanda creeata cu success");
-            comandaDao.create(comanda);
+
+            try {
+                comandaDao.add(comanda);
+                System.out.println("Comanda creeata cu success");
+                FileManagement.scriereFisierChar(AUDIT_FILE, "add comanda "+comanda.getId());
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
         }
     }
 
     public void readAll() {
-        comandaDao.readAll();
+        try {
+            comandaDao.readAll();
+            FileManagement.scriereFisierChar(AUDIT_FILE, "readall comanda ");
+        } catch (SQLException e) {
+            System.out.println("Nu exista comenzi in baza de date");
+        }
     }
 
-    public User readByEmail(User userByEmail) {
-        comandaDao.readByEmail(userByEmail);
-        return userByEmail;
+    public void readAllByClient(User user) {
+        try {
+            comandaDao.readAllByClient(user.getId());
+            FileManagement.scriereFisierChar(AUDIT_FILE, "readall by client "+user.getId());
+        } catch (SQLException e) {
+            System.out.println("Clientul nu are comenzi");
+        }
     }
 
-    public User readByPhone(User userByPhone) {
-        comandaDao.readByPhone(userByPhone);
-        return userByPhone;
+    public Comanda read(Integer idC) {
+        try {
+            Comanda x=comandaDao.read(idC.toString());
+            FileManagement.scriereFisierChar(AUDIT_FILE, "read comanda "+idC);
+            return x;
+        } catch (SQLException e) {
+            System.out.println("Nu exista comanda specificata");
+        }
+        return null;
     }
 
-    public Comanda read(User user, Produs produs) {
-        return comandaDao.read(user,produs);
+    public void addProdus(int idComanda, int idProdus) {
+        try {
+            produsComandatDao.add(new ProdusComandat(idComanda,idProdus));
+            FileManagement.scriereFisierChar(AUDIT_FILE, "add produs "+idProdus+" la comanda "+idComanda);
+        } catch (SQLException e) {
+            System.out.println("Adaugare produs esuata (probabil deja exista): "+e.getMessage());
+        }
+    }
+
+    public boolean findComanda(User user, Produs produs){
+        try {
+            return produsComandatDao.foundComanda(user,produs);
+        } catch (SQLException e) {
+            System.out.println("Nu exista comanda cautata");
+        }
+        return false;
     }
 }

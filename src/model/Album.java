@@ -4,7 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Album {
-    //posibil interfata
+
+    private static int albumIndex=0;
+    private int id;
     private String numeArtist;
     private String numeAlbum;
     private String genMuzical;
@@ -12,12 +14,18 @@ public class Album {
     public Album(String numeArtist, String numeAlbum) {
         this.numeArtist = numeArtist;
         this.numeAlbum = numeAlbum;
+        this.id=++albumIndex;
     }
 
     public Album(String numeArtist, String numeAlbum, String genMuzical) {
         this.numeArtist = numeArtist;
         this.numeAlbum = numeAlbum;
         this.genMuzical = genMuzical;
+        this.id=++albumIndex;
+    }
+
+    public Album() {
+        //this.id=++albumIndex;
     }
 
     public String getNumeArtist() {
@@ -42,6 +50,14 @@ public class Album {
 
     public void setGenMuzical(String genMuzical) {
         this.genMuzical = genMuzical;
+    }
+
+    public static int getAlbumIndex() {
+        return albumIndex;
+    }
+
+    public int getId() {
+        return id;
     }
 
     @Override

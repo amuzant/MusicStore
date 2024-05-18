@@ -2,16 +2,19 @@ package service;
 
 import daoservices.AlbumRepositoryService;
 import model.Album;
+import utils.FileManagement;
 
+import java.sql.SQLException;
 import java.util.Scanner;
+
+import static utils.Constante.AUDIT_FILE;
 
 public class AlbumService {
     private static AlbumRepositoryService albumRepositoryService;
-    public AlbumService(){
+    public AlbumService() throws SQLException {
         this.albumRepositoryService = new AlbumRepositoryService();
     }
-    public void preiaInput(Scanner scanner)
-    {
+    public void preiaInput(Scanner scanner) throws SQLException {
         System.out.println("Serviciu Album:");
         System.out.println("1. Insereaza Album nou\n" +
                 "2. Afiseaza Album\n" +
@@ -20,7 +23,7 @@ public class AlbumService {
                 "5. Sterge Album (si produsele care contin albumul)\n");
         alegeOptiune(scanner);
     }
-    private void alegeOptiune(Scanner scanner) {
+    private void alegeOptiune(Scanner scanner) throws SQLException {
         int optiune = scanner.nextInt();
         scanner.nextLine();
         switch(optiune) {
@@ -33,8 +36,14 @@ public class AlbumService {
         }
     }
 
-    private void addAlbum(Scanner scanner) {
-        albumRepositoryService.addAlbum(create(scanner));
+    private void addAlbum(Scanner scanner){
+        try {
+            Album x;
+            albumRepositoryService.addAlbum(x=create(scanner));
+            FileManagement.scriereFisierChar(AUDIT_FILE, "add album "+x.getId());
+        } catch (SQLException e) {
+            System.out.println("Albumul nu a putut fi adaugat: "+e.getMessage());
+        }
     }
 
     private void readAll() {
@@ -46,7 +55,12 @@ public class AlbumService {
         String artist = scanner.nextLine();
         System.out.println("Album name:");
         String album = scanner.nextLine();
-        albumRepositoryService.delete(new Album(artist,album));
+        try {
+            albumRepositoryService.delete(new Album(artist,album));
+            FileManagement.scriereFisierChar(AUDIT_FILE, "delete album "+artist+" - "+album);
+        } catch (SQLException e) {
+            System.out.println("Albumul nu se poate gasi: " + e.getSQLState() + " " + e.getMessage());
+        }
     }
 
     private Album create(Scanner scanner) {
@@ -63,7 +77,14 @@ public class AlbumService {
         String artist = scanner.nextLine();
         System.out.println("Album name:");
         String album = scanner.nextLine();
-        return albumRepositoryService.read(new Album(artist,album));
+        try {
+            Album x=albumRepositoryService.readArtistAlbum(artist,album);
+            FileManagement.scriereFisierChar(AUDIT_FILE, "read album "+artist+" - "+album);
+            return x;
+        } catch (SQLException e) {
+            System.out.println("Nu exista albumul specificat de catre artistul specificat: "+e.getMessage());
+        }
+        return null;
     }
     private void update(Scanner scanner) {
         Album searchedAlbum=read(scanner);
@@ -71,11 +92,13 @@ public class AlbumService {
         {
             System.out.println("Inserati datele actualizate:");
             Album albumNou=create(scanner);
-            if(albumNou!=null)
-            {
-                searchedAlbum.setNumeAlbum(albumNou.getNumeAlbum());
-                searchedAlbum.setNumeArtist(albumNou.getNumeArtist());
-                searchedAlbum.setGenMuzical(albumNou.getGenMuzical());
+            if(!albumRepositoryService.alreadyExists(albumNou)) {
+                try {
+                    albumRepositoryService.update(albumNou);
+                    FileManagement.scriereFisierChar(AUDIT_FILE, "update album "+albumNou.getId());
+                } catch (SQLException e) {
+                    System.out.println(e.getMessage());
+                }
             }
         }
     }

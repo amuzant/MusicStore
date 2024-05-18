@@ -1,37 +1,125 @@
 package dao;
 
+import daoservices.DatabaseConnection;
 import model.Produs;
+import model.ProdusComandat;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ProdusDao {
+public class ProdusDao implements DaoInterface<Produs> {
+    private static ProdusDao produsDao;
+    public static ProdusDao getInstance() throws SQLException {
+        if(produsDao == null){
+            produsDao = new ProdusDao();
+        }
+        return produsDao;
+    }
+    private Connection connection = DatabaseConnection.getConnection();
     private static List<Produs> produse = new ArrayList<>();
 
-    public void create(Produs produs) {
-        produse.add(produs);
+    private ProdusDao() throws SQLException {}
+
+    public void add(Produs produs) throws SQLException {
+        String sql = "INSERT INTO proiectpao.produs(id, denumire, pret, conditie, stoc) VALUES (?,?,?,?,?);";
+
+        try(PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setInt(1, produs.getId());
+            statement.setString(2, produs.getDenumire());
+            statement.setDouble(3, produs.getPret());
+            statement.setString(4, produs.getConditie());
+            statement.setInt(5, produs.getStoc());
+            statement.executeUpdate();
+        }
     }
 
-    public Produs read(String denumire) {
-        if(!produse.isEmpty()){
-            for(Produs p : produse){
-                if(p.getDenumire().equals(denumire)){
-                    System.out.println(p);
-                    return p;
-                }
+    public Produs read(String id) throws SQLException {
+        String sql = "SELECT * FROM proiectpao.produs p WHERE p.id = ?";
+        ResultSet rs = null;
+        try(PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setString(1, id);
+            rs = statement.executeQuery();
+
+            while (rs.next()){
+                Produs p=new Produs();
+                p.setId(rs.getInt("id"));
+                p.setDenumire(rs.getString("denumire"));
+                p.setPret(rs.getFloat("pret"));
+                p.setConditie(rs.getString("conditie"));
+                p.setStoc(rs.getInt("stoc"));
+                return p;
+            }
+        }finally {
+            if(rs != null) {
+                rs.close();
             }
         }
         return null;
     }
 
-    public void delete(Produs produs) {
-        produse.remove(produs);
+    public Produs readByName(String name) throws SQLException {
+        String sql = "SELECT * FROM proiectpao.produs p WHERE p.denumire = ?";
+        ResultSet rs = null;
+        try(PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setString(1, name);
+            rs = statement.executeQuery();
+
+            while (rs.next()){
+                Produs p=new Produs();
+                p.setId(rs.getInt("id"));
+                p.setDenumire(rs.getString("denumire"));
+                p.setPret(rs.getFloat("pret"));
+                p.setConditie(rs.getString("conditie"));
+                p.setStoc(rs.getInt("stoc"));
+                return p;
+            }
+        }finally {
+            if(rs != null) {
+                rs.close();
+            }
+        }
+        return null;
     }
 
-    public void readAll(Object objType) {
-        for(Produs p : produse){
-            if(objType==null || p.getClass()==objType.getClass())
+
+    public void delete(Produs produs) throws SQLException
+    {
+        String sql = "DELETE FROM proiectpao.produs p WHERE p.id = ?";
+
+        try(PreparedStatement statement = connection.prepareStatement(sql);) {
+            statement.setInt(1, produs.getId());
+            statement.executeUpdate();
+        }
+    }
+
+    @Override
+    public void update(Produs entity) throws SQLException {
+
+    }
+
+    public void readAll() throws SQLException {
+        String sql = "SELECT * FROM proiectpao.produs p";
+        ResultSet rs = null;
+        try(PreparedStatement statement = connection.prepareStatement(sql)) {
+            rs = statement.executeQuery();
+
+            while (rs.next()){
+                Produs p=new Produs();
+                p.setId(rs.getInt("id"));
+                p.setDenumire(rs.getString("denumire"));
+                p.setPret(rs.getFloat("pret"));
+                p.setConditie(rs.getString("conditie"));
+                p.setStoc(rs.getInt("stoc"));
                 System.out.println(p);
+            }
+        }finally {
+            if(rs != null) {
+                rs.close();
+            }
         }
     }
 }

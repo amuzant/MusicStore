@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class User {
+    private int id;
+    private static int userIndex=0;
     private String nume;
     private String email;
     private String nrTelefon;
@@ -20,6 +22,7 @@ public class User {
         this.nrTelefon = nrTelefon;
         this.adresa = adresa;
         this.dataAlaturarii=LocalDateTime.now();
+        this.id=++userIndex;
     }
 
     public User(String nume, String email, String nrTelefon, String adresa, DebitCard card) {
@@ -28,6 +31,11 @@ public class User {
         this.nrTelefon = nrTelefon;
         this.adresa = adresa;
         this.card = card;
+        this.id=++userIndex;
+    }
+
+    public User() {
+
     }
 
     public String getNume() {
@@ -68,6 +76,26 @@ public class User {
 
     public void setCard(DebitCard card) {
         this.card = card;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public static int getUserIndex() {
+        return userIndex;
+    }
+
+    public LocalDateTime getDataAlaturarii() {
+        return dataAlaturarii;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setDataAlaturarii(LocalDateTime dataAlaturarii) {
+        this.dataAlaturarii = dataAlaturarii;
     }
 
     @Override

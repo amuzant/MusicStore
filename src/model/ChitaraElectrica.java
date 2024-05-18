@@ -10,6 +10,10 @@ public class ChitaraElectrica extends Chitara{
         this.configuratie=configuratie;
     }
 
+    public ChitaraElectrica() {
+        super();
+    }
+
     public void play()
     {
         if(configuratie.equalsIgnoreCase(Constante.HSS)) System.out.println("Poti canta de toate ♫ ♬");

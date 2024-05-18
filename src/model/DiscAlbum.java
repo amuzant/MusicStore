@@ -12,6 +12,55 @@ public class DiscAlbum extends Produs {
     private float pretInchirierePeZi;
     private List<DiscInterior> discuriInterioare=new ArrayList<>();
 
+    public DiscAlbum(Album album, float pret, String conditie, int stoc, String tipDisc, int anLansare, String casaDiscuri, float pretInchirierePeZi) {
+        super(album.getNumeArtist()+" - "+album.getNumeAlbum(),pret,conditie,stoc);
+        this.tipDisc=tipDisc;
+        this.album=album;
+        this.anLansare=anLansare;
+        this.numeCasaDeDiscuri=casaDiscuri;
+        this.pretInchirierePeZi=pretInchirierePeZi;
+    }
+
+    public DiscAlbum(String s, float pret, String conditie, int stoc, String tip, int anLansare, String casaDiscuri, float pret1) {
+        super(s,pret,conditie,stoc);
+        this.tipDisc=tip;
+        this.anLansare=anLansare;
+        this.numeCasaDeDiscuri=casaDiscuri;
+        this.pretInchirierePeZi=pret1;
+    }
+
+    public List<DiscInterior> getDiscuriInterioare() {
+        return discuriInterioare;
+    }
+
+    public void setAlbum(Album album) {
+        this.album = album;
+    }
+
+    public void setTipDisc(String tipDisc) {
+        this.tipDisc = tipDisc;
+    }
+
+    public void setAnLansare(int anLansare) {
+        this.anLansare = anLansare;
+    }
+
+    public void setNumeCasaDeDiscuri(String numeCasaDeDiscuri) {
+        this.numeCasaDeDiscuri = numeCasaDeDiscuri;
+    }
+
+    public void setNrDiscuri(int nrDiscuri) {
+        this.nrDiscuri = nrDiscuri;
+    }
+
+    public void setPretInchirierePeZi(float pretInchirierePeZi) {
+        this.pretInchirierePeZi = pretInchirierePeZi;
+    }
+
+    public void setDiscuriInterioare(List<DiscInterior> discuriInterioare) {
+        this.discuriInterioare = discuriInterioare;
+    }
+
     public DiscAlbum(Album album, float pret, String conditie, int stoc, String tipDisc, int anLansare, String numeCasaDeDiscuri, int nrDiscuri, float pretInchirierePeZi) {
         super(album.getNumeArtist()+" - "+album.getNumeAlbum(), pret, conditie, stoc);
         this.album=album;
@@ -44,6 +93,10 @@ public class DiscAlbum extends Produs {
 
     public DiscAlbum(String denumire, float pret, String conditie, int stoc) {
         super(denumire,pret,conditie,stoc);
+    }
+
+    public DiscAlbum() {
+        super();
     }
 
     public Album getAlbum() {

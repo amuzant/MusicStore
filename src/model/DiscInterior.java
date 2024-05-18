@@ -4,14 +4,48 @@ import java.util.*;
 
 public class DiscInterior
 {
+    private static int discInteriorIndex=0;
+    private int id;
+
+    public DiscInterior() {
+
+    }
+
+    public static void setDiscInteriorIndex(int discInteriorIndex) {
+        DiscInterior.discInteriorIndex = discInteriorIndex;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public int getIdProdus() {
+        return idProdus;
+    }
+
+    public void setIdProdus(int idProdus) {
+        this.idProdus = idProdus;
+    }
+
+    public void setMelodii(List<Melodie> melodii) {
+        this.melodii = melodii;
+    }
+
+    public void setNrPiese(int nrPiese) {
+        this.nrPiese = nrPiese;
+    }
+
+    private int idProdus;
     private String denumire;
     private List<Melodie> melodii= new ArrayList<>();
     private int nrDisc;
     private int nrPiese;
 
-    public DiscInterior(String denumire, int nrDisc) {
+    public DiscInterior(int idProdus,String denumire, int nrDisc) {
+        this.idProdus=idProdus;
         this.denumire = denumire;
         this.nrDisc = nrDisc;
+        this.id=++discInteriorIndex;
     }
 
     public DiscInterior(Scanner scanner) {
@@ -27,10 +61,11 @@ public class DiscInterior
         for(int i=1;i<=nrPiese;i++)
         {
             System.out.println("Melodia "+i);
-            Melodie melodie=new Melodie(scanner);
+            Melodie melodie=new Melodie(scanner,this.id);
             melodii.add(melodie);
         }
         Collections.sort(melodii, Comparator.comparingInt(Melodie::getIndexPiesa));
+        this.id=++discInteriorIndex;
     }
 
     public String getDenumire() {
@@ -66,6 +101,14 @@ public class DiscInterior
     {
         melodii.remove(melodie);
         this.nrDisc=melodii.size();
+    }
+
+    public static int getDiscInteriorIndex() {
+        return discInteriorIndex;
+    }
+
+    public int getId() {
+        return id;
     }
 
     @Override

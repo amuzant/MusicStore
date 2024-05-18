@@ -1,12 +1,28 @@
 package model;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 
 public class Inchiriere {
+    private static int inchiriereIndex=0;
+    private int id;
     private User client;
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setDataInchirierii(LocalDate dataInchirierii) {
+        this.dataInchirierii = dataInchirierii;
+    }
+
+    public void setPretPlatit(float pretPlatit) {
+        this.pretPlatit = pretPlatit;
+    }
+
     private DiscAlbum albumImprumutat;
-    private LocalDateTime dataInchirierii;
+    private LocalDate dataInchirierii;
     private int zileInchiriate;
     private float pretPlatit;
 
@@ -15,7 +31,12 @@ public class Inchiriere {
         this.albumImprumutat = albumImprumutat;
         this.zileInchiriate = zileInchiriate;
         this.pretPlatit=albumImprumutat.getPretInchirierePeZi()*zileInchiriate;
-        this.dataInchirierii= LocalDateTime.now();
+        this.dataInchirierii= LocalDate.now();
+        this.id=++inchiriereIndex;
+    }
+
+    public Inchiriere() {
+
     }
 
     @Override
@@ -29,7 +50,7 @@ public class Inchiriere {
                 '}';
     }
 
-    public LocalDateTime getDataInchirierii() {
+    public LocalDate getDataInchirierii() {
         return dataInchirierii;
     }
 
@@ -60,5 +81,13 @@ public class Inchiriere {
 
     public float getPretPlatit() {
         return pretPlatit;
+    }
+
+    public static int getInchiriereIndex() {
+        return inchiriereIndex;
+    }
+
+    public int getId() {
+        return id;
     }
 }
