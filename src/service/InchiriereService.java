@@ -112,4 +112,7 @@ public class InchiriereService {
         inchiriereRepositoryService.readAll();
     }
 
+    public int getMaxId() {
+        return inchiriereRepositoryService.getMaxId();
+    }
 }

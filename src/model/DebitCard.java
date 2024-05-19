@@ -19,11 +19,12 @@ public class DebitCard {
     }
 
     public DebitCard(Scanner scanner) {
+
+        System.out.println("Cod card: ");
+        this.codCard=scanner.nextLine();
         System.out.println("Balanta card: ");
         this.balanta=scanner.nextFloat();
         scanner.nextLine();
-        System.out.println("Cod card: ");
-        this.codCard=scanner.nextLine();
         System.out.println("Banca card: ");
         this.banca=scanner.nextLine();
         System.out.println("Limita card: ");
@@ -34,6 +35,19 @@ public class DebitCard {
 
     public DebitCard() {
         this.dataExpirare = LocalDate.now().plusYears(4);
+    }
+
+    public DebitCard(Scanner scanner, String codCard) {
+        this.codCard=codCard;
+        System.out.println("Balanta card: ");
+        this.balanta=scanner.nextFloat();
+        scanner.nextLine();
+        System.out.println("Banca card: ");
+        this.banca=scanner.nextLine();
+        System.out.println("Limita card: ");
+        this.limita=scanner.nextFloat();
+        scanner.nextLine();
+        this.dataExpirare=LocalDate.now().plusYears(4);
     }
 
     public float getBalanta() {

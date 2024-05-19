@@ -163,4 +163,21 @@ public class InchiriereDao implements DaoInterface<Inchiriere> {
             }
         }
     }
+    public int getMaxId() {
+        String sql="select max(id) as id from proiectpao.inchiriere";
+        ResultSet rs=null;
+        try(PreparedStatement statement=connection.prepareStatement(sql))
+        {
+            rs=statement.executeQuery();
+            while(rs.next())
+            {
+                return rs.getInt("id");
+            }
+        }
+        catch(SQLException e)
+        {
+            return 0;
+        }
+        return 0;
+    }
 }

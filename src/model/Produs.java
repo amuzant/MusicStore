@@ -22,6 +22,10 @@ public class Produs {
         //this.id=++produsIndex;
     }
 
+    public static void setProdusIndex(int produsIndex) {
+        Produs.produsIndex = produsIndex;
+    }
+
     public String getDenumire() {
         return denumire;
     }

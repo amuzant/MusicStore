@@ -13,6 +13,10 @@ public class Inchiriere {
         this.id = id;
     }
 
+    public static void setInchiriereIndex(int inchiriereIndex) {
+        Inchiriere.inchiriereIndex = inchiriereIndex;
+    }
+
     public void setDataInchirierii(LocalDate dataInchirierii) {
         this.dataInchirierii = dataInchirierii;
     }

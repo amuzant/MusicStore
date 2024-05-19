@@ -1,4 +1,6 @@
+import dao.MelodieDao;
 import daoservices.DatabaseConnection;
+import model.*;
 import service.*;
 
 import java.sql.*;
@@ -20,6 +22,17 @@ public class Main {
         albumService=new AlbumService();
         scanner=new Scanner(System.in);
         databaseConnection=new DatabaseConnection();
+        //updating indexes:
+        {
+            User.setUserIndex(userService.getMaxId());
+            Produs.setProdusIndex(produsService.getMaxId());
+            Comanda.setComandaIndex(comandaService.getMaxId());
+            ProdusComandat.setProduseComandateIndex(comandaService.getMaxProdusId());
+            Melodie.setMelodieIndex(produsService.getMaxMelodieId());
+            Inchiriere.setInchiriereIndex(inchiriereService.getMaxId());
+            DiscInterior.setDiscInteriorIndex(produsService.getMaxDiscInteriorId());
+            Album.setAlbumIndex(albumService.getMaxId());
+        }
         while(true)
         {
             meniu();

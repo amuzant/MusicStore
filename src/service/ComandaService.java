@@ -168,4 +168,12 @@ public class ComandaService {
         comandaRepositoryService.readAllByClient(x=userRepositoryService.getUserByPhone(scanner));
         FileManagement.scriereFisierChar(AUDIT_FILE, "readallbyphone comanda "+x.getNrTelefon());
     }
+
+    public int getMaxId() {
+        return comandaRepositoryService.getMaxId();
+    }
+
+    public int getMaxProdusId() {
+        return comandaRepositoryService.getMaxProdusId();
+    }
 }

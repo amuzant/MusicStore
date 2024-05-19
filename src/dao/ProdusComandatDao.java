@@ -106,4 +106,21 @@ public class ProdusComandatDao implements DaoInterface<ProdusComandat>{
         }
         return false;
     }
+    public int getMaxId() {
+        String sql="select max(id) as id from proiectpao.produscomandat";
+        ResultSet rs=null;
+        try(PreparedStatement statement=connection.prepareStatement(sql))
+        {
+            rs=statement.executeQuery();
+            while(rs.next())
+            {
+                return rs.getInt("id");
+            }
+        }
+        catch(SQLException e)
+        {
+            return 0;
+        }
+        return 0;
+    }
 }

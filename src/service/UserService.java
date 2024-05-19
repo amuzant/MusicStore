@@ -40,7 +40,9 @@ public class UserService {
     public void addUser(Scanner scanner){
         try {
             User user=create(scanner);
-            userRepositoryService.addDebitCard(user.getCard());
+            if(userRepositoryService.findCard(user.getCard().getCodCard())==null)
+                userRepositoryService.addDebitCard(user.getCard());
+            System.out.println(user);
             userRepositoryService.addUser(user);
             FileManagement.scriereFisierChar(AUDIT_FILE, "add user " + user.getId());
         } catch (SQLException e) {
@@ -59,7 +61,11 @@ public class UserService {
         String adresa = scanner.nextLine();
 
         User user=new User(nume,email,nrTelefon,adresa);
-        DebitCard cardNou=new DebitCard(scanner);
+        System.out.println("Cod card: ");
+        String codCard=scanner.nextLine();
+        DebitCard cardNou;
+        if((cardNou=userRepositoryService.findCard(codCard))==null)
+            cardNou=new DebitCard(scanner,codCard);
         user.setCard(cardNou);
         return user;
     }
@@ -124,4 +130,7 @@ public class UserService {
             }
     }
 
+    public int getMaxId() {
+        return userRepositoryService.getMaxId();
+    }
 }

@@ -24,6 +24,10 @@ public class Album {
         this.id=++albumIndex;
     }
 
+    public static void setAlbumIndex(int albumIndex) {
+        Album.albumIndex = albumIndex;
+    }
+
     public Album() {
         //this.id=++albumIndex;
     }

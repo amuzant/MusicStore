@@ -10,6 +10,10 @@ public class Melodie {
 
     }
 
+    public static void setMelodieIndex(int melodieIndex) {
+        Melodie.melodieIndex = melodieIndex;
+    }
+
     public void setId(int id) {
         this.id = id;
     }

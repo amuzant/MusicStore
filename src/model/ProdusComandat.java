@@ -33,6 +33,10 @@ public class ProdusComandat {
         this.idProdus = idProdus;
     }
 
+    public static void setProduseComandateIndex(int produseComandateIndex) {
+        ProdusComandat.produseComandateIndex = produseComandateIndex;
+    }
+
     public boolean isReviewed() {
         return reviewed;
     }

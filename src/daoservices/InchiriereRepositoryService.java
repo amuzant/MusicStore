@@ -65,4 +65,8 @@ public class InchiriereRepositoryService {
             System.out.println("User-ul nu exista");
         }
     }
+
+    public int getMaxId() {
+        return inchiriereDao.getMaxId();
+    }
 }

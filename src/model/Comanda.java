@@ -54,6 +54,10 @@ public class Comanda {
         return client;
     }
 
+    public static void setComandaIndex(int comandaIndex) {
+        Comanda.comandaIndex = comandaIndex;
+    }
+
     public Set<Produs> getProduseCumparate() {
         return produseCumparate;
     }

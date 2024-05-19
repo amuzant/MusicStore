@@ -75,14 +75,15 @@ public class UserDao implements DaoInterface<User> {
 
     @Override
     public void update(User entity) throws SQLException {
-        String sql = "UPDATE proiectpao.user SET nume=?,email=?,nrTelefon=?,adresa=? where id=?";
+        String sql = "UPDATE proiectpao.user SET nume=?,email=?,nrTelefon=?,adresa=?,card_cod=? where id=?";
 
         try(PreparedStatement statement = connection.prepareStatement(sql)) {
             statement.setString(1, entity.getNume());
             statement.setString(2, entity.getEmail());
             statement.setString(3, entity.getNrTelefon());
             statement.setString(4, entity.getAdresa());
-            statement.setInt(5, entity.getId());
+            statement.setString(5,entity.getCard().getCodCard());
+            statement.setInt(6, entity.getId());
             statement.executeUpdate();
         }
         //return null;
@@ -140,5 +141,22 @@ public class UserDao implements DaoInterface<User> {
             }
         }
         return null;
+    }
+    public int getMaxId() {
+        String sql="select max(id) as id from proiectpao.user";
+        ResultSet rs=null;
+        try(PreparedStatement statement=connection.prepareStatement(sql))
+        {
+            rs=statement.executeQuery();
+            while(rs.next())
+            {
+                return rs.getInt("id");
+            }
+        }
+        catch(SQLException e)
+        {
+            return 0;
+        }
+        return 0;
     }
 }

@@ -49,7 +49,7 @@ public class DebitCardDao implements DaoInterface<DebitCard> {
                 ca.setDataExpirare(rs.getDate("dataExpirare").toLocalDate());
                 ca.setBanca(rs.getString("banca"));
                 ca.setLimita(rs.getFloat("limita"));
-                rs.getString(rs.getString("codCard"));
+                ca.setCodCard(rs.getString("codCard"));
                 return ca;
             }
         }finally {

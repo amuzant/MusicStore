@@ -240,4 +240,16 @@ public class ProdusService {
         Produs searchedProduct=read(scanner);
         produsRepositoryService.delete(searchedProduct);
     }
+
+    public int getMaxId() {
+        return produsRepositoryService.getMaxId();
+    }
+
+    public int getMaxMelodieId() {
+        return produsRepositoryService.getMaxMelodieId();
+    }
+
+    public int getMaxDiscInteriorId() {
+        return produsRepositoryService.getMaxDiscInteriorId();
+    }
 }

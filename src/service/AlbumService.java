@@ -103,4 +103,7 @@ public class AlbumService {
         }
     }
 
+    public int getMaxId() {
+        return albumRepositoryService.getMaxId();
+    }
 }

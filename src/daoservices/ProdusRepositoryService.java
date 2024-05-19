@@ -138,4 +138,16 @@ public class ProdusRepositoryService {
             System.out.println("Melodia nu a putut fi adaugata");
         }
     }
+
+    public int getMaxId() {
+        return produsDao.getMaxId();
+    }
+
+    public int getMaxMelodieId() {
+        return melodieDao.getMaxId();
+    }
+
+    public int getMaxDiscInteriorId() {
+        return discInteriorDao.getMaxId();
+    }
 }

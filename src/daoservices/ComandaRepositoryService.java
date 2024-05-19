@@ -77,4 +77,12 @@ public class ComandaRepositoryService {
         }
         return false;
     }
+
+    public int getMaxId() {
+        return comandaDao.getMaxId();
+    }
+
+    public int getMaxProdusId() {
+        return produsComandatDao.getMaxId();
+    }
 }

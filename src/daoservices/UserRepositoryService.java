@@ -80,7 +80,7 @@ public class UserRepositoryService {
             FileManagement.scriereFisierChar(AUDIT_FILE, "read user " + email);
             //System.out.println("searcheduser: "+searchedUser);
         } catch (SQLException e) {
-            System.out.println("User not existing");
+            System.out.println("User not existing "+e.getMessage());
         }
         return searchedUser;
     }
@@ -102,7 +102,7 @@ public class UserRepositoryService {
         try {
             userDao.read(String.valueOf(id));
         } catch (SQLException e) {
-            System.out.println("Nu exista userul cu id-ul mentionat.");
+            System.out.println("Nu exista userul cu id-ul mentionat. "+e.getMessage());
         }
         return null;
     }
@@ -112,7 +112,7 @@ public class UserRepositoryService {
             userDao.update(user);
             FileManagement.scriereFisierChar(AUDIT_FILE, "update user " + user.getId());
         } catch (SQLException e) {
-            System.out.println("Userul nu a putut fi updatat"+e.getMessage());
+            System.out.println("Userul nu a putut fi updatat "+e.getMessage());
         }
     }
 
@@ -121,7 +121,25 @@ public class UserRepositoryService {
             debitCardDao.add(cardNou);
             FileManagement.scriereFisierChar(AUDIT_FILE, "add debitcard " + cardNou.getCodCard());
         } catch (SQLException e) {
-            System.out.println("Adaugare Debit card esuat");
+            System.out.println("Adaugare Debit card esuat "+e.getMessage());
         }
+    }
+
+    public DebitCard findCard(String codCard) {
+        try
+        {
+            DebitCard x=debitCardDao.read(codCard);
+            FileManagement.scriereFisierChar(AUDIT_FILE, "read debitcard " + codCard);
+            return x;
+        }
+        catch (SQLException e)
+        {
+            System.out.println("Citire Debit card esuat "+e.getMessage());
+        }
+        return null;
+    }
+
+    public int getMaxId() {
+        return userDao.getMaxId();
     }
 }

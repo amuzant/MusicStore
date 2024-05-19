@@ -16,6 +16,10 @@ public class User {
     private DebitCard card;
     //poate balanta?
 
+    public static void setUserIndex(int userIndex) {
+        User.userIndex = userIndex;
+    }
+
     public User(String nume, String email, String nrTelefon, String adresa) {
         this.nume = nume;
         this.email = email;

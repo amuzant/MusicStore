@@ -67,4 +67,8 @@ public class AlbumRepositoryService {
     public void update(Album albumNou) throws SQLException {
         albumDao.update(albumNou);
     }
+
+    public int getMaxId() {
+        return albumDao.getMaxId();
+    }
 }
