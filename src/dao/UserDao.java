@@ -75,7 +75,17 @@ public class UserDao implements DaoInterface<User> {
 
     @Override
     public void update(User entity) throws SQLException {
+        String sql = "UPDATE proiectpao.user SET nume=?,email=?,nrTelefon=?,adresa=? where id=?";
 
+        try(PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setString(1, entity.getNume());
+            statement.setString(2, entity.getEmail());
+            statement.setString(3, entity.getNrTelefon());
+            statement.setString(4, entity.getAdresa());
+            statement.setInt(5, entity.getId());
+            statement.executeUpdate();
+        }
+        //return null;
     }
 
     public User readByEmail(String email) throws SQLException {
@@ -94,7 +104,7 @@ public class UserDao implements DaoInterface<User> {
                 u.setAdresa(rs.getString("adresa"));
                 u.setDataAlaturarii(rs.getTimestamp("dataAlaturarii").toLocalDateTime());
 
-                System.out.println(u);
+                //System.out.println(u);
                 //u.setCard();
                 return u;
             }

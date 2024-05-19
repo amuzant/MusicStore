@@ -3,6 +3,7 @@ package dao;
 import daoservices.DatabaseConnection;
 import model.Produs;
 import model.ProdusComandat;
+import model.User;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -98,7 +99,16 @@ public class ProdusDao implements DaoInterface<Produs> {
 
     @Override
     public void update(Produs entity) throws SQLException {
+        String sql = "UPDATE proiectpao.produs SET denumire=?,pret=?,conditie=?,stoc=? where id=?";
 
+        try(PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setString(1, entity.getDenumire());
+            statement.setFloat(2, entity.getPret());
+            statement.setString(3, entity.getConditie());
+            statement.setInt(4, entity.getStoc());
+            statement.setInt(5, entity.getId());
+            statement.executeUpdate();
+        }
     }
 
     public void readAll() throws SQLException {

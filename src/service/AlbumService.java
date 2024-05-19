@@ -28,7 +28,7 @@ public class AlbumService {
         scanner.nextLine();
         switch(optiune) {
             case 1->addAlbum(scanner);
-            case 2->read(scanner);
+            case 2-> System.out.println(read(scanner));
             case 3->readAll();
             case 4->update(scanner);
             case 5->delete(scanner);

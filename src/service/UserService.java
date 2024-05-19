@@ -30,7 +30,7 @@ public class UserService {
         scanner.nextLine();
         switch(optiune) {
             case 1->addUser(scanner);
-            case 2-> System.out.println(read(scanner));
+            case 2-> read(scanner);
             case 3->update(scanner);
             case 4->delete(scanner);
             default -> System.out.println("Optiunea aleasa nu exista | Inserati un numar de la 1 la 4");
@@ -70,10 +70,14 @@ public class UserService {
         switch(query)
         {
             case "e" -> {
-                return userRepositoryService.getUserByEmail(scanner);
+                User x=userRepositoryService.getUserByEmail(scanner);
+                if(x!=null) System.out.println(x);
+                return x;
             }
             case "p" -> {
-                return userRepositoryService.getUserByPhone(scanner);
+                User x=userRepositoryService.getUserByPhone(scanner);
+                if(x!=null) System.out.println(x);
+                return x;
             }
             default-> System.out.println("The option you specified does not exist");
         }
@@ -99,22 +103,25 @@ public class UserService {
 
     public void update(Scanner scanner)  {
         User searchedUser= null;
+            try {
+                searchedUser = read(scanner);
+                FileManagement.scriereFisierChar(AUDIT_FILE, "update user " + searchedUser.getId());
 
-            searchedUser = read(scanner);
-            FileManagement.scriereFisierChar(AUDIT_FILE, "update user " + searchedUser.getId());
-
-            System.out.println("Inserati datele actualizate:");
-            User userNou=create(scanner);
-            if(userNou!=null)
-            {
-                searchedUser.setNume(userNou.getNume());
-                searchedUser.setAdresa(userNou.getAdresa());
-                searchedUser.setEmail(userNou.getEmail());
-                searchedUser.setNrTelefon(userNou.getNrTelefon());
-                searchedUser.setCard(userNou.getCard());
+                System.out.println("Inserati datele actualizate:");
+                User userNou = create(scanner);
+                if (userNou != null) {
+                    searchedUser.setNume(userNou.getNume());
+                    searchedUser.setAdresa(userNou.getAdresa());
+                    searchedUser.setEmail(userNou.getEmail());
+                    searchedUser.setNrTelefon(userNou.getNrTelefon());
+                    searchedUser.setCard(userNou.getCard());
+                }
+                userRepositoryService.update(searchedUser);
             }
-            userRepositoryService.update(searchedUser);
-
+            catch(Exception e)
+            {
+                System.out.println("Userul nu exista");
+            }
     }
 
 }

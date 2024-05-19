@@ -70,6 +70,14 @@ public class MelodieDao implements DaoInterface<Melodie>{
 
     @Override
     public void update(Melodie entity) throws SQLException {
+        String sql = "UPDATE proiectpao.melodie SET denumire=?,indexPiesa=?,durata=? where id=?";
 
+        try(PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setString(1, entity.getDenumire());
+            statement.setInt(2, entity.getIndexPiesa());
+            statement.setInt(3, entity.getDurata());
+            statement.setInt(4, entity.getId());
+            statement.executeUpdate();
+        }
     }
 }

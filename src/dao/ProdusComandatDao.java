@@ -59,7 +59,7 @@ public class ProdusComandatDao implements DaoInterface<ProdusComandat>{
     }
 
     @Override
-    public void delete(ProdusComandat entity) throws SQLException {
+    public void update(ProdusComandat entity) throws SQLException {
         String sql = "UPDATE proiectpao.produscomandat SET reviewed=? WHERE id = ?";
 
         try(PreparedStatement statement = connection.prepareStatement(sql);) {
@@ -70,7 +70,7 @@ public class ProdusComandatDao implements DaoInterface<ProdusComandat>{
     }
 
     @Override
-    public void update(ProdusComandat entity) throws SQLException {
+    public void delete(ProdusComandat entity) throws SQLException {
         String sql = "DELETE FROM proiectpao.produscomandat pc WHERE pc.id = ?";
 
         try(PreparedStatement statement = connection.prepareStatement(sql);) {

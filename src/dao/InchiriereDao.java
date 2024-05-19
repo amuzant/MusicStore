@@ -118,7 +118,7 @@ public class InchiriereDao implements DaoInterface<Inchiriere> {
     }
 
     public void readAll() throws SQLException {
-        String sql = "SELECT * FROM proiectpao.inchiriere where client_id=?";
+        String sql = "SELECT * FROM proiectpao.inchiriere";
         ResultSet rs = null;
         try(PreparedStatement statement = connection.prepareStatement(sql)) {
             rs = statement.executeQuery();

@@ -12,7 +12,7 @@ import java.util.List;
 
 public class AlbumDao implements DaoInterface<Album> {
     private static AlbumDao albumDao;
-    private Connection connection= DatabaseConnection.getConnection();
+    private Connection connection = DatabaseConnection.getConnection();
     public static AlbumDao getInstance() throws SQLException {
         if(albumDao == null){
             albumDao = new AlbumDao();

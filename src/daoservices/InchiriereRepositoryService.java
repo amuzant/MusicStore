@@ -60,5 +60,9 @@ public class InchiriereRepositoryService {
         } catch (SQLException e) {
             System.out.println("Clientul nu are comenzi");
         }
+        catch (Exception e)
+        {
+            System.out.println("User-ul nu exista");
+        }
     }
 }

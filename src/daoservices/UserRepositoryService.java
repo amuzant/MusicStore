@@ -32,7 +32,7 @@ public class UserRepositoryService {
     {
         System.out.println("Email: ");
         String email=scanner.nextLine();
-        User user=userDao.read(email);
+        User user=userDao.readByEmail(email);
         if(user!=null) {
             System.out.println("User sters cu success.");
             FileManagement.scriereFisierChar(AUDIT_FILE, "remove user " + user.getEmail());
@@ -44,7 +44,7 @@ public class UserRepositoryService {
     public void removeUserByPhone(Scanner scanner) throws SQLException {
         System.out.println("Phone: ");
         String phone=scanner.nextLine();
-        User user=userDao.read(phone);
+        User user=userDao.readByPhone(phone);
         if(user!=null) {
             System.out.println("User sters cu success.");
             FileManagement.scriereFisierChar(AUDIT_FILE, "remove user " + user.getNrTelefon());

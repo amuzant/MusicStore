@@ -1,4 +1,4 @@
-
+DROP TABLE IF EXISTS proiectpao.debitcard,proiectpao.user,proiectpao.produs,proiectpao.album,proiectpao.discalbum,proiectpao.discinterior,proiectpao.melodie,proiectpao.inchiriere,proiectpao.comanda,proiectpao.produscomandat,proiectpao.chitara,chitaraacustica,proiectpao.chitaraelectrica cascade;
 
 -- Tabela pentru DebitCard
 CREATE TABLE proiectpao.DebitCard (
@@ -11,7 +11,7 @@ CREATE TABLE proiectpao.DebitCard (
 
 -- Tabela pentru User
 CREATE TABLE proiectpao.User (
-                      id INT AUTO_INCREMENT PRIMARY KEY,
+                      id INT AUTO_INCREMENT NOT NULL UNIQUE PRIMARY KEY,
                       nume VARCHAR(255),
                       email VARCHAR(255),
                       nrTelefon VARCHAR(20),
@@ -23,7 +23,7 @@ CREATE TABLE proiectpao.User (
 
 -- Tabela pentru Produs
 CREATE TABLE proiectpao.Produs (
-                        id INT AUTO_INCREMENT PRIMARY KEY,
+                        id INT AUTO_INCREMENT NOT NULL UNIQUE PRIMARY KEY,
                         denumire VARCHAR(255),
                         pret FLOAT,
                         conditie VARCHAR(255),
@@ -36,7 +36,7 @@ CREATE TABLE proiectpao.Produs (
 
 -- Tabela pentru Album
 CREATE TABLE proiectpao.Album (
-                       id INT AUTO_INCREMENT PRIMARY KEY,
+                       id INT AUTO_INCREMENT NOT NULL UNIQUE PRIMARY KEY,
                        numeArtist VARCHAR(255),
                        numeAlbum VARCHAR(255),
                        genMuzical VARCHAR(255)
@@ -57,7 +57,7 @@ CREATE TABLE proiectpao.DiscAlbum (
 
 -- Tabela pentru DiscInterior
 CREATE TABLE proiectpao.DiscInterior (
-                              id INT AUTO_INCREMENT PRIMARY KEY,
+                              id INT AUTO_INCREMENT NOT NULL UNIQUE PRIMARY KEY,
                               produs_id INT,
                               denumire VARCHAR(255),
                               nrDisc INT,
@@ -67,17 +67,18 @@ CREATE TABLE proiectpao.DiscInterior (
 
 -- Tabela pentru Melodie
 CREATE TABLE proiectpao.Melodie (
-                                    id INT AUTO_INCREMENT PRIMARY KEY,
+                                    id INT NOT NULL UNIQUE AUTO_INCREMENT,
                                     discInterior_id INT,
                                     denumire VARCHAR(255),
                                     indexPiesa INT,
                                     durata INT,
+                                    PRIMARY KEY(denumire,discInterior_id),
                                     FOREIGN KEY (discInterior_id) REFERENCES DiscInterior(id) ON DELETE CASCADE
 );
 
 -- Tabela pentru Inchiriere
 CREATE TABLE proiectpao.Inchiriere (
-                            id INT AUTO_INCREMENT PRIMARY KEY,
+                            id INT AUTO_INCREMENT NOT NULL UNIQUE PRIMARY KEY,
                             client_id INT,
                             albumImprumutat_id INT,
                             dataInchirierii DATE,
@@ -89,7 +90,7 @@ CREATE TABLE proiectpao.Inchiriere (
 
 -- Tabela pentru Comanda
 CREATE TABLE proiectpao.Comanda (
-                         id INT AUTO_INCREMENT PRIMARY KEY,
+                         id INT AUTO_INCREMENT PRIMARY KEY NOT NULL UNIQUE,
                          client_id INT,
                          pretTotal FLOAT,
                          dataAchizitiei DATETIME,
@@ -99,10 +100,11 @@ CREATE TABLE proiectpao.Comanda (
 -- Tabela asociativa (Produsele care intra intr-o comanda)
 CREATE TABLE proiectpao.ProdusComandat
 (
-                        id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
+                        id INT AUTO_INCREMENT NOT NULL UNIQUE,
                         comanda_id INT,
                         produs_id INT,
                         reviewed BOOL,
+                        primary key (comanda_id,produs_id),
                         FOREIGN KEY (comanda_id) REFERENCES Comanda(id) ON DELETE CASCADE,
                         FOREIGN KEY (produs_id) REFERENCES Produs(id) ON DELETE CASCADE
 );
