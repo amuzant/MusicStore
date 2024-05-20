@@ -1,11 +1,10 @@
 package service;
 
+import daoservices.AlbumRepositoryService;
 import daoservices.ComandaRepositoryService;
 import daoservices.ProdusRepositoryService;
 import daoservices.UserRepositoryService;
-import model.Comanda;
-import model.Produs;
-import model.User;
+import model.*;
 import utils.FileManagement;
 
 import java.sql.SQLException;
@@ -17,6 +16,7 @@ public class ComandaService {
     private static ComandaRepositoryService comandaRepositoryService;
     private static UserRepositoryService userRepositoryService;
     private static ProdusRepositoryService produsRepositoryService;
+    private static AlbumRepositoryService albumRepositoryService;
     public ComandaService() throws SQLException {
         comandaRepositoryService=new ComandaRepositoryService();
         userRepositoryService=new UserRepositoryService();
@@ -62,19 +62,23 @@ public class ComandaService {
             }
             if(user!=null)
             {
-                if(findComanda(user, produs)==true)
+                ProdusComandat pc;
+                if((pc=findComanda(user, produs))!=null)
                 {
                     System.out.println("Review-ul tau pentru produsul "+produs.getDenumire()+" (1-5 stele):");
                     float review=scanner.nextFloat();
                     scanner.nextLine();
                     produs.addRating(review);
                     produsRepositoryService.update(produs);
+                    comandaRepositoryService.setReviewed(pc);
                 }
+                else System.out.println("N-am gasit comanda sau deja ai dat review produsului");
             }
+            else System.out.println("N-am gasit user");
         }
     }
 
-    private boolean findComanda(User user, Produs produs) {
+    private ProdusComandat findComanda(User user, Produs produs) {
             return comandaRepositoryService.findComanda(user,produs);
     }
 

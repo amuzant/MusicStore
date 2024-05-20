@@ -52,15 +52,52 @@ public class ProdusRepositoryService {
 
     public Produs getProdus(String denumire) {
         try {
+            //System.out.println(denumire);
             Produs x=produsDao.readByName(denumire);
-            FileManagement.scriereFisierChar(AUDIT_FILE, "read produs " + denumire);
-            return x;
+            if(x!=null)
+            {
+                FileManagement.scriereFisierChar(AUDIT_FILE, "read produs " + denumire);
+                Produs da=discAlbumDao.read(String.valueOf(x.getId()));
+                if(da==null)
+                {
+                    Produs c=chitaraDao.read(String.valueOf(x.getId()));
+
+                    if(c!=null)
+                    {
+                        Produs ca=chitaraAcusticaDao.read(String.valueOf(x.getId()));
+
+                        if(ca==null)
+                        {
+                            Produs ce=chitaraElectricaDao.read(String.valueOf(x.getId()));
+                            if(ce!=null)
+                            {
+                                ce.copy(x);
+                                return ce;
+                            }
+                        }
+                        else
+                        {
+                            ca.copy(x);
+                            return ca;
+                        }
+                    }
+                }
+                else
+                {
+                    da.copy(x);
+                    return da;
+                }
+            }
+            else return x;
+            //System.out.println(x);
+
         }
         catch (Exception e)
         {
             System.out.println("Produsul nu exista!");
             return null;
         }
+        return null;
     }
 
     public void readAll(Object o)  {

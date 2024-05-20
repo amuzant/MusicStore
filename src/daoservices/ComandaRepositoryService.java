@@ -69,13 +69,14 @@ public class ComandaRepositoryService {
         }
     }
 
-    public boolean findComanda(User user, Produs produs){
+    public ProdusComandat findComanda(User user, Produs produs){
         try {
+
             return produsComandatDao.foundComanda(user,produs);
         } catch (SQLException e) {
             System.out.println("Nu exista comanda cautata");
         }
-        return false;
+        return null;
     }
 
     public int getMaxId() {
@@ -84,5 +85,15 @@ public class ComandaRepositoryService {
 
     public int getMaxProdusId() {
         return produsComandatDao.getMaxId();
+    }
+
+    public void setReviewed(ProdusComandat pc) {
+
+        pc.setReviewed(true);
+        try {
+            produsComandatDao.update(pc);
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
     }
 }

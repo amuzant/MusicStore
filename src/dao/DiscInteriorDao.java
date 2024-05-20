@@ -5,9 +5,21 @@ import model.Album;
 import model.DiscInterior;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class DiscInteriorDao implements DaoInterface<DiscInterior> {
     private static DiscInteriorDao discInteriorDao;
+
+    private static MelodieDao melodieDao;
+
+    static {
+        try {
+            melodieDao = MelodieDao.getInstance();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
     private Connection connection = DatabaseConnection.getConnection();
 
@@ -98,5 +110,31 @@ public class DiscInteriorDao implements DaoInterface<DiscInterior> {
             return 0;
         }
         return 0;
+    }
+
+    public List<DiscInterior> readByProdus(int id) throws SQLException {
+        List<DiscInterior> discInteriorList=new ArrayList<>();
+        String sql = "SELECT * FROM proiectpao.discinterior di WHERE di.produs_id = ?";
+        ResultSet rs = null;
+        try(PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setString(1, String.valueOf(id));
+            rs = statement.executeQuery();
+
+            while (rs.next()){
+                DiscInterior di=new DiscInterior();
+                di.setId(rs.getInt("id"));
+                di.setNrDisc(rs.getInt("nrDisc"));
+                di.setIdProdus(rs.getInt("produs_id"));
+                di.setDenumire(rs.getString("denumire"));
+                di.setNrPiese(rs.getInt("nrPiese"));
+                di.setMelodii(melodieDao.readByDisc(rs.getInt("id")));
+                discInteriorList.add(di);
+            }
+        }finally {
+            if(rs != null) {
+                rs.close();
+            }
+        }
+        return discInteriorList;
     }
 }

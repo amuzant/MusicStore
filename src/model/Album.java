@@ -72,4 +72,8 @@ public class Album {
                 ", genMuzical='" + genMuzical +
                 '}';
     }
+
+    public void setId(int id) {
+        this.id=id;
+    }
 }

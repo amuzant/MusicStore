@@ -88,12 +88,16 @@ public class AlbumService {
     }
     private void update(Scanner scanner) {
         Album searchedAlbum=read(scanner);
+        System.out.println(searchedAlbum);
         if(searchedAlbum!=null)
         {
             System.out.println("Inserati datele actualizate:");
             Album albumNou=create(scanner);
+            albumNou.setId(searchedAlbum.getId());
+            System.out.println(albumNou.getId());
             if(!albumRepositoryService.alreadyExists(albumNou)) {
                 try {
+                    System.out.println("nu exista");
                     albumRepositoryService.update(albumNou);
                     FileManagement.scriereFisierChar(AUDIT_FILE, "update album "+albumNou.getId());
                 } catch (SQLException e) {

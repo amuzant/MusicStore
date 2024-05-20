@@ -48,21 +48,27 @@ public class InchiriereService {
     private void addInchiriere(Scanner scanner) throws SQLException {
         User user = userRepositoryService.findUser(scanner);
         if (user != null) {
-            Inchiriere inchiriere;
-            if (user.getCard().getBalanta() > (Objects.requireNonNull(inchiriere = produsComandaInit(user, scanner))).getPretPlatit())
-            {
-                inchiriereRepositoryService.addInchiriere(inchiriere);
-                user.getCard().setBalanta(user.getCard().getBalanta()-inchiriere.getPretPlatit());
-                userRepositoryService.update(user);
-            }
+            Inchiriere inchiriere= produsComandaInit(user, scanner);
+            if(inchiriere!=null)
+                if (user.getCard().getBalanta() > inchiriere.getPretPlatit() && user.getCard().getLimita()>inchiriere.getPretPlatit())
+                {
+                    inchiriereRepositoryService.addInchiriere(inchiriere);
+                    user.getCard().setBalanta(user.getCard().getBalanta()-inchiriere.getPretPlatit());
+                    userRepositoryService.update(user);
+                }
+                else
+                {
+                    System.out.println("Limita sau balanta insuficienta.");
+                }
         }
     }
     private Inchiriere produsComandaInit(User user, Scanner scanner) {
         System.out.println("Adaugare disc la comanda dupa nume:");
         String numeProdus=scanner.nextLine();
         Produs produs=produsRepositoryService.getProdus(numeProdus);
+        //System.out.println(produs);
         //daca am timp fa-o sa ia produsele in stoc doar
-        if(produs!=null && produs.getClass()== DiscAlbum.class)
+        if(produs!=null)
         {
             DiscAlbum disc= (DiscAlbum) produs;
             System.out.println("Zile inchiriate: ");

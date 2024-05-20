@@ -52,6 +52,8 @@ public class ProdusDao implements DaoInterface<Produs> {
                 p.setPret(rs.getFloat("pret"));
                 p.setConditie(rs.getString("conditie"));
                 p.setStoc(rs.getInt("stoc"));
+                p.setRating(rs.getFloat("rating"));
+                p.setNrReviewuri(rs.getInt("nrReviewuri"));
                 return p;
             }
         }finally {
@@ -76,6 +78,8 @@ public class ProdusDao implements DaoInterface<Produs> {
                 p.setPret(rs.getFloat("pret"));
                 p.setConditie(rs.getString("conditie"));
                 p.setStoc(rs.getInt("stoc"));
+                p.setRating(rs.getFloat("rating"));
+                p.setNrReviewuri(rs.getInt("nrReviewuri"));
                 return p;
             }
         }finally {
@@ -99,14 +103,16 @@ public class ProdusDao implements DaoInterface<Produs> {
 
     @Override
     public void update(Produs entity) throws SQLException {
-        String sql = "UPDATE proiectpao.produs SET denumire=?,pret=?,conditie=?,stoc=? where id=?";
+        String sql = "UPDATE proiectpao.produs SET denumire=?,pret=?,conditie=?,stoc=?,rating=?,nrReviewuri=? where id=?";
 
         try(PreparedStatement statement = connection.prepareStatement(sql)) {
             statement.setString(1, entity.getDenumire());
             statement.setFloat(2, entity.getPret());
             statement.setString(3, entity.getConditie());
             statement.setInt(4, entity.getStoc());
-            statement.setInt(5, entity.getId());
+            statement.setInt(7, entity.getId());
+            statement.setFloat(5,entity.getRating());
+            statement.setInt(6,entity.getNrReviewuri());
             statement.executeUpdate();
         }
     }
@@ -124,6 +130,8 @@ public class ProdusDao implements DaoInterface<Produs> {
                 p.setPret(rs.getFloat("pret"));
                 p.setConditie(rs.getString("conditie"));
                 p.setStoc(rs.getInt("stoc"));
+                p.setRating(rs.getFloat("rating"));
+                p.setNrReviewuri(rs.getInt("nrReviewuri"));
                 System.out.println(p);
             }
         }finally {

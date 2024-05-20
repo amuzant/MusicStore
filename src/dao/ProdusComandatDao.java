@@ -7,8 +7,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 
 public class ProdusComandatDao implements DaoInterface<ProdusComandat>{
     private static ProdusComandatDao produsComandatDao;
@@ -79,7 +77,7 @@ public class ProdusComandatDao implements DaoInterface<ProdusComandat>{
         }
     }
 
-    public boolean foundComanda(User user, Produs produs) throws SQLException {
+    public ProdusComandat foundComanda(User user, Produs produs) throws SQLException {
         String sql="SELECT * FROM proiectpao.produsComandat join proiectpao.comanda c on produsComandat.comanda_id = c.id join proiectpao.user u on c.client_id = u.id where produs_id=? AND client_id=?";
         ResultSet rs = null;
         try(PreparedStatement statement = connection.prepareStatement(sql)) {
@@ -95,8 +93,7 @@ public class ProdusComandatDao implements DaoInterface<ProdusComandat>{
                     pc.setIdProdus(rs.getInt("comanda_id"));
                     pc.setIdComanda(rs.getInt("produs_id"));
                     pc.setReviewed(rs.getBoolean("reviewed"));
-                    update(pc);
-                    return true;
+                    return pc;
                 }
             }
         }finally {
@@ -104,7 +101,7 @@ public class ProdusComandatDao implements DaoInterface<ProdusComandat>{
                 rs.close();
             }
         }
-        return false;
+        return null;
     }
     public int getMaxId() {
         String sql="select max(id) as id from proiectpao.produscomandat";

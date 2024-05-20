@@ -45,6 +45,7 @@ public class AlbumDao implements DaoInterface<Album> {
 
             while (rs.next()){
                 Album a = new Album();
+                a.setId(Integer.parseInt(id));
                 a.setNumeArtist(rs.getString("numeArtist"));
                 a.setNumeAlbum(rs.getString("numeAlbum"));
                 a.setGenMuzical(rs.getString("genMuzical"));
@@ -114,6 +115,7 @@ public class AlbumDao implements DaoInterface<Album> {
 
             while (rs.next()){
                 Album a = new Album();
+                a.setId(rs.getInt("id"));
                 a.setNumeArtist(rs.getString("numeArtist"));
                 a.setNumeAlbum(rs.getString("numeAlbum"));
                 a.setGenMuzical(rs.getString("genMuzical"));
@@ -137,6 +139,7 @@ public class AlbumDao implements DaoInterface<Album> {
 
             while (rs.next()){
                 Album a = new Album();
+                a.setId(rs.getInt("id"));
                 a.setNumeArtist(rs.getString("numeArtist"));
                 a.setNumeAlbum(rs.getString("numeAlbum"));
                 a.setGenMuzical(rs.getString("genMuzical"));

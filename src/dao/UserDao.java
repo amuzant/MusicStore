@@ -12,6 +12,16 @@ import java.util.List;
 
 public class UserDao implements DaoInterface<User> {
     private static UserDao userDao;
+    private static DebitCardDao debitCardDao;
+
+    static {
+        try {
+            debitCardDao = DebitCardDao.getInstance();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     public static UserDao getInstance() throws SQLException {
         if(userDao == null){
             userDao = new UserDao();
@@ -53,7 +63,7 @@ public class UserDao implements DaoInterface<User> {
                 u.setNrTelefon(rs.getString("nrTelefon"));
                 u.setAdresa(rs.getString("adresa"));
                 u.setDataAlaturarii(rs.getTimestamp("dataAlaturarii").toLocalDateTime());
-                //u.setCard();
+                u.setCard(debitCardDao.read(rs.getString("card_cod")));
                 return u;
             }
         }finally {
@@ -106,7 +116,7 @@ public class UserDao implements DaoInterface<User> {
                 u.setDataAlaturarii(rs.getTimestamp("dataAlaturarii").toLocalDateTime());
 
                 //System.out.println(u);
-                //u.setCard();
+                u.setCard(debitCardDao.read(rs.getString("card_cod")));
                 return u;
             }
         }finally {
@@ -132,7 +142,7 @@ public class UserDao implements DaoInterface<User> {
                 u.setNrTelefon(rs.getString("nrTelefon"));
                 u.setAdresa(rs.getString("adresa"));
                 u.setDataAlaturarii(rs.getTimestamp("dataAlaturarii").toLocalDateTime());
-                //u.setCard();
+                u.setCard(debitCardDao.read(rs.getString("card_cod")));
                 return u;
             }
         }finally {

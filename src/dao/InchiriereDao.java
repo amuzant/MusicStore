@@ -43,7 +43,7 @@ public class InchiriereDao implements DaoInterface<Inchiriere> {
     private InchiriereDao() throws SQLException{}
 
     public void add(Inchiriere inchiriere) throws SQLException {
-        String sql = "INSERT INTO proiectpao.inchiriere(client_id, albumImprumutat_id, dataInchirierii, zileInchiriate, pretPlatit, id) VALUES (?,?,?,?,?);";
+        String sql = "INSERT INTO proiectpao.inchiriere(client_id, albumImprumutat_id, dataInchirierii, zileInchiriate, pretPlatit, id) VALUES (?,?,?,?,?,?);";
 
         try(PreparedStatement statement = connection.prepareStatement(sql)) {
             statement.setInt(1, inchiriere.getClient().getId());

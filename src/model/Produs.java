@@ -1,5 +1,7 @@
 package model;
 
+import java.util.Objects;
+
 public class Produs {
     private static int produsIndex=0;
     private int id;
@@ -24,6 +26,17 @@ public class Produs {
 
     public static void setProdusIndex(int produsIndex) {
         Produs.produsIndex = produsIndex;
+    }
+
+    public void copy(Produs produs)
+    {
+        setId(produs.getId());
+        setDenumire(produs.getDenumire());
+        setPret(produs.getPret());
+        setConditie(produs.getConditie());
+        setStoc(produs.getStoc());
+        setRating(produs.getRating());
+        setNrReviewuri(produs.getNrReviewuri());
     }
 
     public String getDenumire() {

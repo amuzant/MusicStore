@@ -8,6 +8,22 @@ import java.sql.*;
 
 public class DiscAlbumDao implements DaoInterface<DiscAlbum> {
     private static DiscAlbumDao discAlbumDao;
+    private static AlbumDao albumDao;
+
+    private static DiscInteriorDao discInteriorDao;
+
+    static {
+        try {
+            discInteriorDao = DiscInteriorDao.getInstance();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        try {
+            albumDao = AlbumDao.getInstance();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
     private Connection connection = DatabaseConnection.getConnection();
 
@@ -51,13 +67,13 @@ public class DiscAlbumDao implements DaoInterface<DiscAlbum> {
                 da.setStoc(rs.getInt("stoc"));
                 da.setRating(rs.getFloat("rating"));
                 da.setNrReviewuri(rs.getInt("nrReviewuri"));
-                //da.setAlbum()
+                da.setAlbum(albumDao.read(String.valueOf(rs.getInt("album_id"))));
                 da.setTipDisc(rs.getString("tipDisc"));
                 da.setAnLansare(rs.getInt("anLansare"));
                 da.setNrDiscuri(rs.getInt("nrDiscuri"));
                 da.setNumeCasaDeDiscuri(rs.getString("numeCasaDeDiscuri"));
                 da.setPretInchirierePeZi(rs.getFloat("pretInchirierePeZi"));
-                //da.setDiscuriInterioare();
+                da.setDiscuriInterioare(discInteriorDao.readByProdus(rs.getInt("id")));
                 return da;
             }
         }finally {
@@ -80,7 +96,7 @@ public class DiscAlbumDao implements DaoInterface<DiscAlbum> {
 
     @Override
     public void update(DiscAlbum entity) throws SQLException {
-        String sql = "UPDATE proiectpao.discalbum SET tipDisc=?,anLansare=?,numeCasaDeDiscuri=?,nrDiscuri=?,album_id=? where produs_id=?";
+        String sql = "UPDATE proiectpao.discalbum SET tipDisc=?,anLansare=?,numeCasaDeDiscuri=?,nrDiscuri=?,pretInchirierePeZi=?,album_id=? where produs_id=?";
 
         try(PreparedStatement statement = connection.prepareStatement(sql)) {
             statement.setString(1, entity.getTipDisc());
@@ -108,7 +124,7 @@ public class DiscAlbumDao implements DaoInterface<DiscAlbum> {
                 da.setStoc(rs.getInt("stoc"));
                 da.setRating(rs.getFloat("rating"));
                 da.setNrReviewuri(rs.getInt("nrReviewuri"));
-                //da.setAlbum()
+                da.setAlbum(albumDao.read(String.valueOf(rs.getInt("id"))));
                 da.setTipDisc(rs.getString("tipDisc"));
                 da.setAnLansare(rs.getInt("anLansare"));
                 da.setNrDiscuri(rs.getInt("nrDiscuri"));

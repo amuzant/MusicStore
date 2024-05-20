@@ -5,6 +5,8 @@ import model.Album;
 import model.Melodie;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class MelodieDao implements DaoInterface<Melodie>{
     private static MelodieDao melodieDao;
@@ -96,5 +98,30 @@ public class MelodieDao implements DaoInterface<Melodie>{
             return 0;
         }
         return 0;
+    }
+
+    public List<Melodie> readByDisc(int id) throws SQLException {
+        List<Melodie> melodii=new ArrayList<>();
+        String sql = "SELECT * FROM proiectpao.melodie m WHERE m.discInterior_id = ?";
+        ResultSet rs = null;
+        try(PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setString(1, String.valueOf(id));
+            rs = statement.executeQuery();
+
+            while (rs.next()){
+                Melodie m=new Melodie();
+                m.setId(rs.getInt("id"));
+                m.setDiscInteriorId(rs.getInt("discInterior_id"));
+                m.setDenumire(rs.getString("denumire"));
+                m.setIndexPiesa(rs.getInt("indexPiesa"));
+                m.setDurata(rs.getInt("durata"));
+                melodii.add(m);
+            }
+        }finally {
+            if(rs != null) {
+                rs.close();
+            }
+        }
+        return melodii;
     }
 }

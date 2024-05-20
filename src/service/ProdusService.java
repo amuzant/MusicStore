@@ -129,27 +129,32 @@ public class ProdusService {
             String numeArtist=scanner.nextLine();
             System.out.println("Nume Album: ");
             String numeAlbum=scanner.nextLine();
-            album=albumRepositoryService.read(new Album(numeArtist,numeAlbum));
-        System.out.println("Tip Disc:");
-        String tip=scanner.nextLine();
-        if(tipDisc!=null) tip=tipDisc;
-        if(tip.equalsIgnoreCase(CD) || tip.equalsIgnoreCase(VINYL)) {
-            System.out.println("An lansare:");
-            int anLansare = scanner.nextInt();
-            scanner.nextLine();
-            System.out.println("Casa de discuri:");
-            String casaDiscuri = scanner.nextLine();
-            System.out.println("Pret inchiriere pe zi:");
-            float pret = scanner.nextFloat();
-            scanner.nextLine();
+        try {
+            album=albumRepositoryService.readArtistAlbum(numeArtist,numeAlbum);
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        if(album!=null) {
+            System.out.println("Tip Disc:");
+            String tip = scanner.nextLine();
+            if (tipDisc != null) tip = tipDisc;
+            if (tip.equalsIgnoreCase(CD) || tip.equalsIgnoreCase(VINYL)) {
+                System.out.println("An lansare:");
+                int anLansare = scanner.nextInt();
+                scanner.nextLine();
+                System.out.println("Casa de discuri:");
+                String casaDiscuri = scanner.nextLine();
+                System.out.println("Pret inchiriere pe zi:");
+                float pret = scanner.nextFloat();
+                scanner.nextLine();
 
-            Produs disc;
-            if(album!=null)
-            {
-                disc=new DiscAlbum(album,produs.getPret(),produs.getConditie(),produs.getStoc(),tipDisc,anLansare,casaDiscuri,pret);
+                Produs disc = new DiscAlbum(album, produs.getPret(), produs.getConditie(), produs.getStoc(), tipDisc, anLansare, casaDiscuri, pret);
+                return disc;
             }
-            else disc = new DiscAlbum(numeArtist+" - "+numeAlbum, produs.getPret(), produs.getConditie(), produs.getStoc(), tip, anLansare, casaDiscuri, pret);
-            return disc;
+        }
+        else{
+            System.out.println("Discul nu a putut fi creat intrucat nu exista un album cu acest nume inca.");
+            return null;
         }
         System.out.println("Tip invalid.");
         return null;
@@ -198,14 +203,12 @@ public class ProdusService {
     private boolean isValidCondition(String conditie) {
         if(conditie.equalsIgnoreCase(FB)||conditie.equalsIgnoreCase(NOU)||conditie.equalsIgnoreCase(CANOU))
             return true;
-        System.out.println("Invalid condition.");
         return false;
     }
 
     private boolean isValidType(String tip) {
         if(tip.equalsIgnoreCase(DISC) || tip.equalsIgnoreCase(CHITARA))
             return true;
-        System.out.println("Invalid type.");
         return false;
     }
 
