@@ -5,7 +5,9 @@ Proiect in Java (Programare orientata de obiecte + JDBC + MySQL care consta in l
 
 ## Cerinte respectate
 
- - [X] **CRUD pentru 4+ clase** (_User, Album, Produs,
-       Chitara/ChitaraElectrica/ChitaraAcustica, DiscAlbum, Comanda,
-       Inchiriere, DebitCard, Melodie, DiscInterior_)
-  - [X] **Sistem de logare** (se realizeaza in _audit.csv_)
+- [X] **CRUD pentru 4+ clase** (_User, Album, Produs,
+  Chitara/ChitaraElectrica/ChitaraAcustica, DiscAlbum, Comanda,
+  Inchiriere, DebitCard, Melodie, DiscInterior_)
+- [X] **Sistem de logare** (se realizeaza in _audit.csv_)
+
+### ⚠️ Datele de logare MySQL se vor modifica in **utils.Constante**!
