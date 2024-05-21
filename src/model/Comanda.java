@@ -26,12 +26,14 @@ public class Comanda {
         this.produseCumparate = produseCumparate;
         this.pretTotal = pretTotal;
         this.id=++comandaIndex;
+        this.dataAchizitiei=LocalDateTime.now();
     }
 
     public Comanda(User client) {
         this.client = client;
         this.pretTotal=0;
         this.id=++comandaIndex;
+        this.dataAchizitiei=LocalDateTime.now();
     }
 
     public Comanda() {

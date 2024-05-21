@@ -113,12 +113,14 @@ public class ComandaService {
         if(user!=null)
         {
             Comanda comanda=produseComandaInit(user,scanner);
+            System.out.println(comanda.getProduseCumparate());
             if(user.getCard().getBalanta()>=comanda.getPretTotal() && user.getCard().getLimita()>=comanda.getPretTotal()) {
                 for (Produs p : comanda.getProduseCumparate())
-                    if (produsRepositoryService.getProdus(String.valueOf(p.getId())).getStoc()<0) {
+                    if (p.getStoc() < 0) {
                         System.out.println("Produse insuficiente");
-                        break;
+                        return;
                     }
+                comandaRepositoryService.addComanda(comanda);
                 for (Produs p: comanda.getProduseCumparate()) {
                     p.setStoc(p.getStoc() - 1);
 
@@ -126,7 +128,7 @@ public class ComandaService {
                         comandaRepositoryService.addProdus(comanda.getId(),p.getId());
 
                 }
-                comandaRepositoryService.addComanda(comanda);
+
             }
             else {
                 System.out.println("Fonduri insuficiente.");

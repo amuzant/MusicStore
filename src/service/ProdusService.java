@@ -61,12 +61,12 @@ public class ProdusService {
                         listaDiscuri.add(discInterior);
                         discInterior.setIdProdus(p.getId());
                         produsRepositoryService.addDiscInterior(discInterior);
-                        FileManagement.scriereFisierChar(AUDIT_FILE, "add disc interior " + discInterior.getId());
+                        //FileManagement.scriereFisierChar(AUDIT_FILE, "add disc interior " + discInterior.getId());
                     }
                     if (discInterior.getMelodii() != null)
                         for (Melodie melodie : discInterior.getMelodii()) {
                             produsRepositoryService.addMelodie(melodie);
-                            FileManagement.scriereFisierChar(AUDIT_FILE, "add melodie " + melodie.getId());
+                            //FileManagement.scriereFisierChar(AUDIT_FILE, "add melodie " + melodie.getId());
                         }
                 }
             }

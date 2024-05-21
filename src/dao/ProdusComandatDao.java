@@ -22,7 +22,7 @@ public class ProdusComandatDao implements DaoInterface<ProdusComandat>{
 
     @Override
     public void add(ProdusComandat entity) throws SQLException {
-        String sql = "INSERT INTO proiectpao.produscomandat VALUES (?, ?, ?);";
+        String sql = "INSERT INTO proiectpao.produscomandat(comanda_id, produs_id, reviewed) VALUES (?, ?, ?);";
 
         try(PreparedStatement statement = connection.prepareStatement(sql)) {
             statement.setInt(1, entity.getIdComanda());

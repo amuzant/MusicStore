@@ -40,7 +40,6 @@ public class AlbumService {
         try {
             Album x;
             albumRepositoryService.addAlbum(x=create(scanner));
-            FileManagement.scriereFisierChar(AUDIT_FILE, "add album "+x.getId());
         } catch (SQLException e) {
             System.out.println("Albumul nu a putut fi adaugat: "+e.getMessage());
         }
@@ -57,7 +56,6 @@ public class AlbumService {
         String album = scanner.nextLine();
         try {
             albumRepositoryService.delete(new Album(artist,album));
-            FileManagement.scriereFisierChar(AUDIT_FILE, "delete album "+artist+" - "+album);
         } catch (SQLException e) {
             System.out.println("Albumul nu se poate gasi: " + e.getSQLState() + " " + e.getMessage());
         }
@@ -79,7 +77,6 @@ public class AlbumService {
         String album = scanner.nextLine();
         try {
             Album x=albumRepositoryService.readArtistAlbum(artist,album);
-            FileManagement.scriereFisierChar(AUDIT_FILE, "read album "+artist+" - "+album);
             return x;
         } catch (SQLException e) {
             System.out.println("Nu exista albumul specificat de catre artistul specificat: "+e.getMessage());
@@ -99,7 +96,6 @@ public class AlbumService {
                 try {
                     System.out.println("nu exista");
                     albumRepositoryService.update(albumNou);
-                    FileManagement.scriereFisierChar(AUDIT_FILE, "update album "+albumNou.getId());
                 } catch (SQLException e) {
                     System.out.println(e.getMessage());
                 }

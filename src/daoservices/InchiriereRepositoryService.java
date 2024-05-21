@@ -57,6 +57,7 @@ public class InchiriereRepositoryService {
     public void readAllByClient(User user) {
         try {
             inchiriereDao.readAllByClient(user.getId());
+            FileManagement.scriereFisierChar(AUDIT_FILE, "read all "+user.getNume());
         } catch (SQLException e) {
             System.out.println("Clientul nu are comenzi");
         }

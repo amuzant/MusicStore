@@ -41,7 +41,7 @@ public class ComandaDao implements DaoInterface<Comanda> {
 
     private ComandaDao() throws SQLException {}
     public void add(Comanda comanda) throws SQLException {
-        String sql = "INSERT INTO proiectpao.comanda(id, client_id, pretTotal, dataAchizitiei) VALUES (?, ?, ?);";
+        String sql = "INSERT INTO proiectpao.comanda(id, client_id, pretTotal, dataAchizitiei) VALUES (?, ?, ?,?);";
 
         try(PreparedStatement statement = connection.prepareStatement(sql)) {
 
@@ -112,7 +112,7 @@ public class ComandaDao implements DaoInterface<Comanda> {
         }
     }
 
-    public List<Comanda> readAll() throws SQLException {
+    public void readAll() throws SQLException {
         String sql = "SELECT * FROM proiectpao.comanda";
         ResultSet rs = null;
         List<Comanda> comenzi = new ArrayList<>();
@@ -125,7 +125,7 @@ public class ComandaDao implements DaoInterface<Comanda> {
                 c.setPretTotal(rs.getFloat("pretTotal"));
                 c.setDataAchizitiei(rs.getTimestamp("dataAchizitiei").toLocalDateTime());
                 //adauga produsele cumparate -> probabil integrezi dao-ul sau le faci pe toate statice
-                comenzi.add(c);
+                System.out.println(c);
             }
 
         }finally {
@@ -134,7 +134,6 @@ public class ComandaDao implements DaoInterface<Comanda> {
             }
         }
 
-        return comenzi;
     }
 
     public void readAllByClient(Integer id) throws SQLException {

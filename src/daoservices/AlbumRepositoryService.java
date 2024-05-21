@@ -16,6 +16,7 @@ public class AlbumRepositoryService {
     public void addAlbum(Album album) throws SQLException {
         if(album!=null) {
             if(!alreadyExists(album)) {
+                FileManagement.scriereFisierChar(AUDIT_FILE, "add album "+album.getNumeAlbum());
                 System.out.println("Albumul a fost adaugat cu success!");
                 albumDao.add(album);
             }

@@ -7,22 +7,16 @@
     <list default="true" id="a8750e7f-fe5c-4d2c-b029-70d0625ed13c" name="Changes" comment="partea a doua (added test data &amp; fixed bugs (hopefully))">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/audit.csv" beforeDir="false" afterPath="$PROJECT_DIR$/audit.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dao/AlbumDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/AlbumDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dao/ComandaDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/ComandaDao.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/dao/DiscAlbumDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/DiscAlbumDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dao/DiscInteriorDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/DiscInteriorDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dao/InchiriereDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/InchiriereDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dao/MelodieDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/MelodieDao.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/dao/ProdusComandatDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/ProdusComandatDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dao/ProdusDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/ProdusDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dao/UserDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/UserDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/daoservices/ComandaRepositoryService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/daoservices/ComandaRepositoryService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/daoservices/ProdusRepositoryService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/daoservices/ProdusRepositoryService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/Album.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Album.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/Produs.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Produs.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/daoservices/AlbumRepositoryService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/daoservices/AlbumRepositoryService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/daoservices/InchiriereRepositoryService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/daoservices/InchiriereRepositoryService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/Comanda.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Comanda.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/service/AlbumService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/AlbumService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/service/ComandaService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/ComandaService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/service/InchiriereService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/InchiriereService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/service/ProdusService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/ProdusService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/UserService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -124,7 +118,8 @@
       <workItem from="1716024918368" duration="27797000" />
       <workItem from="1716149486296" duration="5250000" />
       <workItem from="1716156871968" duration="2705000" />
-      <workItem from="1716218890211" duration="8351000" />
+      <workItem from="1716218890211" duration="8656000" />
+      <workItem from="1716285736478" duration="2140000" />
     </task>
     <task id="LOCAL-00001" summary="partea a doua">
       <option name="closed" value="true" />
@@ -142,7 +137,15 @@
       <option name="project" value="LOCAL" />
       <updated>1716156706913</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="partea a doua (added test data &amp; fixed bugs (hopefully))">
+      <option name="closed" value="true" />
+      <created>1716227351809</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1716227351809</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

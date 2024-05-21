@@ -111,7 +111,7 @@ public class DiscAlbumDao implements DaoInterface<DiscAlbum> {
     }
 
     public void readAll() throws SQLException {
-        String sql = "SELECT * FROM proiectpao.discalbum d join proiectpao.produs p on p.id = d.produs_id WHERE d.produs_id = ?";
+        String sql = "SELECT * FROM proiectpao.discalbum d join proiectpao.produs p on p.id = d.produs_id";
         ResultSet rs = null;
         try(PreparedStatement statement = connection.prepareStatement(sql);) {
             rs = statement.executeQuery();
@@ -130,7 +130,7 @@ public class DiscAlbumDao implements DaoInterface<DiscAlbum> {
                 da.setNrDiscuri(rs.getInt("nrDiscuri"));
                 da.setNumeCasaDeDiscuri(rs.getString("numeCasaDeDiscuri"));
                 da.setPretInchirierePeZi(rs.getFloat("pretInchirierePeZi"));
-                //da.setDiscuriInterioare();
+                da.setDiscuriInterioare(discInteriorDao.readByProdus(rs.getInt("id")));
                 System.out.println(da);
             }
         }finally {

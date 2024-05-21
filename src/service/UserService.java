@@ -111,7 +111,7 @@ public class UserService {
         User searchedUser= null;
             try {
                 searchedUser = read(scanner);
-                FileManagement.scriereFisierChar(AUDIT_FILE, "update user " + searchedUser.getId());
+                //FileManagement.scriereFisierChar(AUDIT_FILE, "update user " + searchedUser.getId());
 
                 System.out.println("Inserati datele actualizate:");
                 User userNou = create(scanner);
