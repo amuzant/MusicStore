@@ -1,6 +1,6 @@
 # Music Store
 
-Proiect in Java (Programare orientata de obiecte + JDBC + MySQL) care consta in legarea bazei de date a unui magazin de produse muzicale cu un sistem rigid si user-friendly de adaugare/modificare a acesteia, respectand _design pattern-ul DAO_
+Proiect in Java + MySQL + JDBC care consta in legarea bazei de date a unui magazin de produse muzicale cu un sistem rigid si user-friendly de adaugare/modificare a acesteia, respectand _design pattern-ul DAO_
 
 ## Cerinte respectate
 
